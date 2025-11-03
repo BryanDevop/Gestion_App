@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.boxing.gestioncanina">
+    <!-- 🔹 Permisos necesarios -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.GestionCanina.NoActionBar">
+        <activity
+            android:name=".ui.dashboard.Biography_Animal"
+            android:exported="false" />
+        <activity
+            android:name=".ui.dashboard.Welcome"
+            android:exported="false" />
+        <activity
+            android:name=".ui.dashboard.Welcome"
+            android:exported="false" />
+        <activity
+            android:name=".ui.dashboard.MenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.dashboard.PetsAdapte"
+            android:exported="false" />
+        <activity
+            android:name=".ui.dashboard.AdoptionAdapter"
+            android:exported="false" /> <!-- Splash Screen sin ActionBar -->
+        <activity
+            android:name=".ui.dashboard.Load_screen"
+            android:exported="true"
+            android:theme="@style/Theme.GestionCanina.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.components.LoadingView"
+            android:exported="false" />
+        <activity
+            android:name=".ui.components.CustomDialog"
+            android:exported="false" />
+        <activity
+            android:name=".ui.settings.SettingsFragment"
+            android:exported="false" />
+        <activity
+            android:name=".ui.settings.ProfileFragment"
+            android:exported="false" />
+        <activity
+            android:name=".ui.billing.PaymentFragment"
+            android:exported="false" />
+        <activity
+            android:name=".ui.billing.InvoiceFragment"
+            android:exported="false" />
+        <activity
+            android:name=".ui.medical.VaccineFragment"
+            android:exported="false" />
+        <activity
+            android:name=".ui.medical.MedicalHistoryFragment"
+            android:exported="false" />
+        <activity
+            android:name=".ui.appointments.AppointmentDetailFragment"
+            android:exported="false" />
+        <activity
+            android:name=".ui.appointments.AppointmentListFragment"
+            android:exported="false" />
+        <activity
+            android:name=".ui.pets.PetDetailFragment"
+            android:exported="false" />
+        <activity
+            android:name=".ui.pets.PetListFragment"
+            android:exported="false" />
+        <activity
+            android:name=".ui.dashboard.DashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.auth.ForgotPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.auth.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.auth.RegisterActivity"
+            android:exported="false" />
+    </application>
+
+</manifest>

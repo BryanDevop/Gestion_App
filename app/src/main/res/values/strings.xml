@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Gestion Canina</string>
+    <string name="logo_app">Logo de la aplicación</string>
+    <string name="olvidaste_tu_contrase_a">¿Olvidaste tu contraseña?</string>
+    <string name="subir_foto">Subir foto</string>
+
+    <string name="app_logo">Logo de la aplicación</string>
+    <string name="decoration">Decoración</string>
+    <string name="create_account">Crear Cuenta</string>
+    <string name="register_subtitle">Únete a miles de usuarios satisfechos</string>
+    <string name="name">Nombre completo</string>
+    <string name="email">Correo electrónico</string>
+    <string name="location">Ciudad o país</string>
+    <string name="password">Contraseña</string>
+    <string name="confirm_password">Confirmar contraseña</string>
+    <string name="register">COMENZAR</string>
+    <string name="or">O continúa con</string>
+    <string name="already_have_account">¿Ya tienes una cuenta?</string>
+    <string name="login">Inicia sesión</string>
+    <string name="toggle_password">Mostrar/Ocultar contraseña</string>
+    <string name="google_login">Continuar con Google</string>
+    <string name="facebook_login">Continuar con Facebook</string>
+    <string name="apple_login">Continuar con Apple</string>
+    <string name="icon">Icon</string>
+    <string name="close">Close</string>
+
+</resources>

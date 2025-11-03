@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- Fondo -->
+    <path
+        android:fillColor="#F3F4F6"
+        android:pathData="M0,0h100v100h-100z"/>
+
+    <!-- Cuerpo del perro -->
+    <path
+        android:fillColor="#E5E7EB"
+        android:pathData="M30,45 L70,45 L70,75 Q70,80 65,80 L35,80 Q30,80 30,75 Z"/>
+
+    <!-- Cabeza -->
+    <path
+        android:fillColor="#E5E7EB"
+        android:pathData="M50,45m-18,0a18,18 0,1 1,36 0a18,18 0,1 1,-36 0"/>
+
+    <!-- Oreja izquierda -->
+    <path
+        android:fillColor="#D1D5DB"
+        android:pathData="M35,30 Q32,25 30,30 L30,40 Q32,42 35,40 Z"/>
+
+    <!-- Oreja derecha -->
+    <path
+        android:fillColor="#D1D5DB"
+        android:pathData="M65,30 Q68,25 70,30 L70,40 Q68,42 65,40 Z"/>
+
+    <!-- Ojo izquierdo -->
+    <path
+        android:fillColor="#6B7280"
+        android:pathData="M42,42m-3,0a3,3 0,1 1,6 0a3,3 0,1 1,-6 0"/>
+
+    <!-- Ojo derecho -->
+    <path
+        android:fillColor="#6B7280"
+        android:pathData="M58,42m-3,0a3,3 0,1 1,6 0a3,3 0,1 1,-6 0"/>
+
+    <!-- Nariz -->
+    <path
+        android:fillColor="#4B5563"
+        android:pathData="M50,50m-4,0a4,4 0,1 1,8 0a4,4 0,1 1,-8 0"/>
+
+    <!-- Boca -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#6B7280"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:pathData="M50,54 Q45,58 40,56 M50,54 Q55,58 60,56"/>
+
+    <!-- Lengua -->
+    <path
+        android:fillColor="#F87171"
+        android:pathData="M48,58 L52,58 L52,64 Q50,66 48,64 Z"/>
+</vector>
