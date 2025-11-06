@@ -9,6 +9,7 @@ android {
     compileSdk = 36
 
     defaultConfig {
+
         applicationId = "com.boxing.gestioncanina"
         minSdk = 24
         targetSdk = 36
@@ -39,28 +40,42 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    // ✅ Configuración correcta de Kotlin en Kotlin DSL
-    kotlin {
-        jvmToolchain(17)
+    // ✅ Configuración correcta de Kotlin
+    kotlinOptions {
+        jvmTarget = "17"
     }
 }
 
 dependencies {
-    // 🔹 Dependencias base (usando tu sistema de versiones libs.versions.toml)
+    // 🔹 Dependencias base de Android
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
-    // 🔥 Firebase
-    implementation(platform("com.google.firebase:firebase-bom:34.4.0"))
-    implementation("com.google.firebase:firebase-auth")
-    implementation("com.google.firebase:firebase-firestore")
-    implementation("com.google.firebase:firebase-analytics")
+    // 🔥 Firebase BoM (Bill of Materials) - Maneja las versiones automáticamente
+    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+
+    // 🔥 Firebase Services (sin especificar versión, el BoM lo maneja)
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation("com.google.firebase:firebase-analytics-ktx")
+
+    // 🔹 Coroutines para operaciones asíncronas con Firebase
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.9.0")
+
+    // 🔹 Lifecycle (para ViewModels si los usas después)
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
 
     // 🔹 Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
+
+
+
