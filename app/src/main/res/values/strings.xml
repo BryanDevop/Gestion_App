@@ -24,4 +24,12 @@
     <string name="icon">Icon</string>
     <string name="close">Close</string>
 
+
+
+    <string name="profile_picture">Foto de perfil</string>
+    <string name="change_password">Cambiar contraseña</string>
+    <string name="two_factor">Verificación en dos pasos</string>
+    <string name="notifications">Notificaciones</string>
+    <string name="dark_mode">Tema oscuro</string>
+    <string name="arrow">Flecha</string>
 </resources>

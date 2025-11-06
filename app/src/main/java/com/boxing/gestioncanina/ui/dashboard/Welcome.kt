@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.boxing.gestioncanina.R
+import com.boxing.gestioncanina.ui.auth.LoginActivity
 import com.boxing.gestioncanina.ui.auth.RegisterActivity
 import com.google.android.material.button.MaterialButton
 
@@ -71,7 +72,8 @@ class Welcome : AppCompatActivity() {
     private fun setupButtons() {
         btnClose.setOnClickListener { finish() }
         btnPhone.setOnClickListener {
-            // TODO: navegar a LoginActivity
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
         btnEmail.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)

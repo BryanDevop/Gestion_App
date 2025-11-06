@@ -1,5 +1,6 @@
 package com.boxing.gestioncanina.ui.dashboard
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.FrameLayout
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.boxing.gestioncanina.R
+import com.boxing.gestioncanina.ui.settings.ProfileFragment
 import com.google.android.material.button.MaterialButton
 
 class DashboardActivity : AppCompatActivity() {
@@ -137,6 +139,8 @@ class DashboardActivity : AppCompatActivity() {
     private fun setupClickListeners() {
         // Menú hamburguesa
         menuButton.setOnClickListener {
+            val intent = Intent(this, ProfileFragment::class.java)
+            startActivity(intent)
             Toast.makeText(this, "Abrir menú lateral", Toast.LENGTH_SHORT).show()
             // TODO: Abrir Navigation Drawer o menú lateral
         }
