@@ -5,6 +5,772 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.pets.PetDetailFragment">
+    android:background="#F8F7FC"
+    tools:context=".ui.dashboard.Biography_Animal">
+
+    <!-- Botón de retroceso -->
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/bg_back_button"
+        android:contentDescription="Volver"
+        android:src="@android:drawable/ic_menu_revert"
+        android:tint="#6B4CE6"
+        android:scaleType="centerInside"
+        android:padding="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="4dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:paddingTop="64dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Card principal con imagen y datos básicos -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp"
+                android:backgroundTint="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <!-- Sección de imagen con carrusel -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cardImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="180dp"
+                            app:cardCornerRadius="16dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
+
+                            <androidx.viewpager2.widget.ViewPager2
+                                android:id="@+id/viewPagerImages"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Botón anterior -->
+                        <ImageButton
+                            android:id="@+id/btnPrevious"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_marginStart="8dp"
+                            android:background="@drawable/bg_button_carousel"
+                            android:contentDescription="Anterior"
+                            android:src="@android:drawable/ic_media_previous"
+                            android:tint="#6B4CE6"
+                            android:scaleType="centerInside"
+                            android:padding="4dp"
+                            app:layout_constraintBottom_toBottomOf="@id/cardImage"
+                            app:layout_constraintStart_toStartOf="@id/cardImage"
+                            app:layout_constraintTop_toTopOf="@id/cardImage" />
+
+                        <!-- Botón siguiente -->
+                        <ImageButton
+                            android:id="@+id/btnNext"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/bg_button_carousel"
+                            android:contentDescription="Siguiente"
+                            android:src="@android:drawable/ic_media_next"
+                            android:tint="#6B4CE6"
+                            android:scaleType="centerInside"
+                            android:padding="4dp"
+                            app:layout_constraintBottom_toBottomOf="@id/cardImage"
+                            app:layout_constraintEnd_toEndOf="@id/cardImage"
+                            app:layout_constraintTop_toTopOf="@id/cardImage" />
+
+                        <!-- Indicadores de página -->
+                        <LinearLayout
+                            android:id="@+id/dotsIndicator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="12dp"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:background="@drawable/bg_dots_container"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            app:layout_constraintBottom_toBottomOf="@id/cardImage"
+                            app:layout_constraintEnd_toEndOf="@id/cardImage"
+                            app:layout_constraintStart_toStartOf="@id/cardImage">
+
+                            <View
+                                android:layout_width="8dp"
+                                android:layout_height="8dp"
+                                android:layout_margin="4dp"
+                                android:background="@drawable/dot_active" />
+
+                            <View
+                                android:layout_width="8dp"
+                                android:layout_height="8dp"
+                                android:layout_margin="4dp"
+                                android:background="@drawable/dot_inactive" />
+
+                            <View
+                                android:layout_width="8dp"
+                                android:layout_height="8dp"
+                                android:layout_margin="4dp"
+                                android:background="@drawable/dot_inactive" />
+
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- Sección de información básica -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="16dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/tvPetName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Max"
+                            android:textColor="#2D2D2D"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="8dp" />
+
+                        <TextView
+                            android:id="@+id/tvPetBreed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Labrador Retriever"
+                            android:textColor="#6B4CE6"
+                            android:textSize="14sp"
+                            android:layout_marginBottom="16dp" />
+
+                        <!-- Info rápida -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:background="@drawable/bg_info_box"
+                            android:padding="12dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginBottom="8dp">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Edad"
+                                    android:textColor="#7B7B7B"
+                                    android:textSize="12sp" />
+
+                                <TextView
+                                    android:id="@+id/tvAge"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="2 años"
+                                    android:textColor="#2D2D2D"
+                                    android:textSize="13sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginBottom="8dp">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Sexo"
+                                    android:textColor="#7B7B7B"
+                                    android:textSize="12sp" />
+
+                                <TextView
+                                    android:id="@+id/tvGender"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Macho"
+                                    android:textColor="#2D2D2D"
+                                    android:textSize="13sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Peso"
+                                    android:textColor="#7B7B7B"
+                                    android:textSize="12sp" />
+
+                                <TextView
+                                    android:id="@+id/tvWeight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="25 kg"
+                                    android:textColor="#2D2D2D"
+                                    android:textSize="13sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Características en grid de 3 columnas -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp"
+                android:backgroundTint="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Características"
+                        android:textColor="#2D2D2D"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Fila 1 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+
+                        <!-- Característica 1: Vacunado -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="6dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="2dp"
+                            android:backgroundTint="#E8E1FF">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="12dp"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="💉"
+                                    android:textSize="24sp"
+                                    android:layout_marginBottom="4dp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Vacunado"
+                                    android:textColor="#6B4CE6"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center" />
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Característica 2: Esterilizado -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="6dp"
+                            android:layout_marginEnd="6dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="2dp"
+                            android:backgroundTint="#E8E1FF">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="12dp"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="✂️"
+                                    android:textSize="24sp"
+                                    android:layout_marginBottom="4dp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Esterilizado"
+                                    android:textColor="#6B4CE6"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center" />
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Característica 3: Desparasitado -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="6dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="2dp"
+                            android:backgroundTint="#E8E1FF">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="12dp"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="🐛"
+                                    android:textSize="24sp"
+                                    android:layout_marginBottom="4dp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Desparasitado"
+                                    android:textColor="#6B4CE6"
+                                    android:textSize="11sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center" />
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                    <!-- Fila 2 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+
+                        <!-- Característica 4: Tamaño -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="6dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="2dp"
+                            android:backgroundTint="#FFF4E6">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="12dp"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="📏"
+                                    android:textSize="24sp"
+                                    android:layout_marginBottom="4dp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Tamaño Grande"
+                                    android:textColor="#FF9800"
+                                    android:textSize="11sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center" />
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Característica 5: Color -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="6dp"
+                            android:layout_marginEnd="6dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="2dp"
+                            android:backgroundTint="#FFF4E6">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="12dp"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="🎨"
+                                    android:textSize="24sp"
+                                    android:layout_marginBottom="4dp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Color Dorado"
+                                    android:textColor="#FF9800"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center" />
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Característica 6: Energía -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="6dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="2dp"
+                            android:backgroundTint="#FFF4E6">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="12dp"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="⚡"
+                                    android:textSize="24sp"
+                                    android:layout_marginBottom="4dp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Muy Activo"
+                                    android:textColor="#FF9800"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center" />
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                    <!-- Fila 3 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+
+                        <!-- Característica 7: Bueno con niños -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="6dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="2dp"
+                            android:backgroundTint="#E3F2FD">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="12dp"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="👶"
+                                    android:textSize="24sp"
+                                    android:layout_marginBottom="4dp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Bueno con Niños"
+                                    android:textColor="#2196F3"
+                                    android:textSize="11sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center" />
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Característica 8: Sociable -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="6dp"
+                            android:layout_marginEnd="6dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="2dp"
+                            android:backgroundTint="#E3F2FD">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:padding="12dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="4dp"
+                                    android:text="🤝"
+                                    android:textSize="24sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="Sociable"
+                                    android:textColor="#2196F3"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Característica 9: Entrenado -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="6dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="2dp"
+                            android:backgroundTint="#E3F2FD">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="12dp"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="🎓"
+                                    android:textSize="24sp"
+                                    android:layout_marginBottom="4dp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Entrenado"
+                                    android:textColor="#2196F3"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center" />
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                    <!-- Fila 4 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <!-- Característica 10: Juguetón -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="6dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="2dp"
+                            android:backgroundTint="#F3E5F5">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="12dp"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="🎾"
+                                    android:textSize="24sp"
+                                    android:layout_marginBottom="4dp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Juguetón"
+                                    android:textColor="#9C27B0"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center" />
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Característica 11: Cariñoso -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="6dp"
+                            android:layout_marginEnd="6dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="2dp"
+                            android:backgroundTint="#F3E5F5">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="12dp"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="❤️"
+                                    android:textSize="24sp"
+                                    android:layout_marginBottom="4dp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Cariñoso"
+                                    android:textColor="#9C27B0"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center" />
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Característica 12: Inteligente -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="6dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="2dp"
+                            android:backgroundTint="#F3E5F5">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="12dp"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="🧠"
+                                    android:textSize="24sp"
+                                    android:layout_marginBottom="4dp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Inteligente"
+                                    android:textColor="#9C27B0"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center" />
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

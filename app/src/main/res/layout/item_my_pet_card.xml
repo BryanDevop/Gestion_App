@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="160dp"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="12dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="4dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardBackgroundColor="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Imagen de la mascota -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp">
+
+            <ImageView
+                android:id="@+id/petImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_launcher_background"
+                android:scaleType="centerCrop" />
+
+            <!-- Icono de favorito -->
+            <ImageView
+                android:id="@+id/favoriteIcon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="end|top"
+                android:layout_margin="12dp"
+                android:src="@drawable/ic_favorite_border"
+                android:padding="6dp"
+                android:background="@drawable/icon_button_bg" />
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Información de la mascota -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/petName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Max"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#1F2937"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+            <TextView
+                android:id="@+id/petBreed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Labrador Retriever"
+                android:textSize="13sp"
+                android:textColor="#6B7280"
+                android:layout_marginTop="4dp"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+            <!-- Indicadores -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="12dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_calendar"
+                        app:tint="#9CA3AF" />
+
+                    <TextView
+                        android:id="@+id/petAge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2 años"
+                        android:textSize="11sp"
+                        android:textColor="#6B7280"
+                        android:layout_marginStart="4dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_gender"
+                        app:tint="#9CA3AF" />
+
+                    <TextView
+                        android:id="@+id/petGender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Macho"
+                        android:textSize="11sp"
+                        android:textColor="#6B7280"
+                        android:layout_marginStart="4dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
