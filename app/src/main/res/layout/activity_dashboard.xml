@@ -238,7 +238,7 @@
                             android:text="Encuentra la\npareja perfecta"
                             android:textSize="18sp"
                             android:textStyle="bold"
-                            android:textColor="#9333EA"
+                            android:textColor="#2338D7"
                             android:gravity="center"
                             android:lineSpacingExtra="4dp" />
 
@@ -260,7 +260,7 @@
                             android:textSize="15sp"
                             android:layout_marginTop="16dp"
                             app:cornerRadius="24dp"
-                            app:backgroundTint="#9333EA"
+                            app:backgroundTint="#3345EA"
                             app:icon="@drawable/ic_heart"
                             app:iconGravity="textStart"
                             app:iconTint="@android:color/white" />
