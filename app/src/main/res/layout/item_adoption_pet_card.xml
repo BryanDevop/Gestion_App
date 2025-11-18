@@ -1,101 +1,621 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="12dp"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="6dp"
-    app:cardUseCompatPadding="true">
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="32dp">
 
-        <!-- Imagen del animal -->
-        <ImageView
-            android:id="@+id/ivAnimalPhoto"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:scaleType="centerCrop"
-            android:contentDescription="Foto del animal"
-            android:src="@drawable/rowailer"
-            app:layout_constraintDimensionRatio="H,4:3"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+        <!-- Header con imagen de fondo -->
+        <RelativeLayout
+            android:id="@+id/headerContainer"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <View
-            android:id="@+id/darkOverlay"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="#80000000"
-            app:layout_constraintTop_toTopOf="@id/ivAnimalPhoto"
-            app:layout_constraintBottom_toBottomOf="@id/ivAnimalPhoto"
-            app:layout_constraintStart_toStartOf="@id/ivAnimalPhoto"
-            app:layout_constraintEnd_toEndOf="@id/ivAnimalPhoto" />
+            <!-- Imagen de la mascota -->
+            <ImageView
+                android:id="@+id/imgPet"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:contentDescription="Foto de la mascota"
+                tools:src="@drawable/pet_placeholder" />
 
-        <!-- Capa degradada en la parte inferior -->
-        <View
-            android:id="@+id/gradientOverlay"
-            android:layout_width="0dp"
-            android:layout_height="120dp"
+            <!-- Gradiente overlay -->
 
-            app:layout_constraintBottom_toBottomOf="@id/ivAnimalPhoto"
-            app:layout_constraintStart_toStartOf="@id/ivAnimalPhoto"
-            app:layout_constraintEnd_toEndOf="@id/ivAnimalPhoto" />
+            <!-- Toolbar transparente -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient_overlay" />
 
-        <!-- Textos y botón sobre la imagen -->
-        <LinearLayout
-            android:id="@+id/infoOverlay"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical">
+
+                <ImageButton
+                    android:id="@+id/btnBack"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:background="@drawable/bg_circle_white_transparent"
+                    android:src="@drawable/ic_arrow_back"
+                    android:tint="#FFFFFF"
+                    android:contentDescription="Volver"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"/>
+
+                <ImageButton
+                    android:id="@+id/btnShare"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:background="@drawable/bg_circle_white_transparent"
+                    android:src="@drawable/ic_share"
+                    android:tint="#FFFFFF"
+                    android:contentDescription="Compartir"
+                    android:layout_marginEnd="8dp"/>
+
+                <ImageButton
+                    android:id="@+id/btnFavorite"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:background="@drawable/bg_circle_white_transparent"
+                    android:src="@drawable/ic_favorite_border"
+                    android:tint="#FFFFFF"
+                    android:contentDescription="Favorito"/>
+
+            </LinearLayout>
+
+            <!-- Badge de disponibilidad -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="20dp"
+                app:cardBackgroundColor="#4CAF50"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp">
+
+                <TextView
+                    android:id="@+id/tvStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="● Disponible"
+                    android:textColor="@color/background"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+        <!-- Card principal con información -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/mainInfoCard"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="12dp"
-            android:gravity="bottom"
-            app:layout_constraintBottom_toBottomOf="@id/ivAnimalPhoto"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="-60dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="12dp"
+            android:backgroundTint="@color/background"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/headerContainer">
 
-            <TextView
-                android:id="@+id/tvAnimalName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Max"
-                android:textSize="35sp"
-                android:textStyle="bold"
-                android:textColor="@android:color/white"
-                android:fontFamily="sans-serif-medium"
-                android:maxLines="1"
-                android:ellipsize="end" />
-
-            <TextView
-                android:id="@+id/tvAnimalBreed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Raza Rowailer"
-                android:textSize="20sp"
-                android:textColor="#E0E0E0"
-                android:fontFamily="sans-serif"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:layout_marginBottom="8dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnAdopt"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:text="Adoptar"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:textColor="@android:color/white"
-                app:backgroundTint="#E22D60FF"
-                app:cornerRadius="20dp"
-                app:elevation="0dp"
-                android:stateListAnimator="@null" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
 
-        </LinearLayout>
+                <!-- Nombre y género -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvPetName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="MAX"
+                            android:textSize="32sp"
+                            android:textStyle="bold"
+                            android:textColor="#212121"
+                            tools:text="Rocky" />
+
+                        <TextView
+                            android:id="@+id/tvBreed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Bulldog Inglés"
+                            android:textSize="16sp"
+                            android:textColor="#504E4E"
+                            android:layout_marginTop="4dp"
+                            tools:text="Bulldog Inglés" />
+
+                    </LinearLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        app:cardCornerRadius="28dp"
+                        app:cardElevation="4dp"
+                        app:cardBackgroundColor="#E1F2F2">
+
+                        <ImageView
+                            android:id="@+id/imgGender"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_male"
+                            android:contentDescription="Género"
+                            android:tint="#2196F3"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <!-- Ubicación -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="16dp">
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_location"
+                        android:tint="#FF6B35"
+                        android:contentDescription="Ubicación"/>
+
+                    <TextView
+                        android:id="@+id/tvLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Santo Domingo, República Dominicana"
+                        android:textSize="14sp"
+                        android:textColor="#757575"
+                        android:layout_marginStart="8dp"
+                        tools:text="Santo Domingo, República Dominicana"/>
+
+                </LinearLayout>
+
+                <!-- Características en grid -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="24dp"
+                    android:weightSum="3">
+
+                    <!-- Edad -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="16dp"
+                        android:background="@drawable/bg_characteristic_box">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Edad"
+                            android:textSize="12sp"
+                            android:textColor="#9E9E9E"
+                            android:textAllCaps="true"
+                            android:letterSpacing="0.1"/>
+
+                        <TextView
+                            android:id="@+id/tvAge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2 años"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="#212121"
+                            android:layout_marginTop="8dp"
+                            tools:text="2 años" />
+
+                    </LinearLayout>
+
+                    <!-- Peso -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="16dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_characteristic_box">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Peso"
+                            android:textSize="12sp"
+                            android:textColor="#9E9E9E"
+                            android:textAllCaps="true"
+                            android:letterSpacing="0.1"/>
+
+                        <TextView
+                            android:id="@+id/tvWeight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="25 kg"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="#212121"
+                            android:layout_marginTop="8dp"
+                            tools:text="25 kg" />
+
+                    </LinearLayout>
+
+                    <!-- Color -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="16dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_characteristic_box">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Color"
+                            android:textSize="12sp"
+                            android:textColor="#9E9E9E"
+                            android:textAllCaps="true"
+                            android:letterSpacing="0.1"/>
+
+                        <TextView
+                            android:id="@+id/tvColor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Marrón"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="#212121"
+                            android:layout_marginTop="8dp"
+                            tools:text="Marrón" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Dueño/Refugio -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/ownerCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            android:backgroundTint="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mainInfoCard">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="20dp"
+                android:gravity="center_vertical">
+
+                <!-- Foto del dueño -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    app:cardCornerRadius="32dp"
+                    app:cardElevation="4dp">
+
+                    <ImageView
+                        android:id="@+id/imgOwner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/placeholder_owner"
+                        android:contentDescription="Foto del dueño"
+                        tools:src="@drawable/placeholder_owner"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp">
+
+                    <TextView
+                        android:id="@+id/tvOwnerName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="María González"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#212121"
+                        tools:text="María González" />
+
+                    <TextView
+                        android:id="@+id/tvOwnerRole"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Dueño actual"
+                        android:textSize="14sp"
+                        android:textColor="#757575"
+                        android:layout_marginTop="4dp"/>
+
+                </LinearLayout>
+
+                <!-- Botones de contacto -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        app:cardCornerRadius="24dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="#E3F2FD">
+
+                        <ImageButton
+                            android:id="@+id/btnCall"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:src="@drawable/ic_phone"
+                            android:tint="#2196F3"
+                            android:contentDescription="Llamar"
+                            android:padding="12dp"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="12dp"
+                        app:cardCornerRadius="24dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="#E8F5E9">
+
+                        <ImageButton
+                            android:id="@+id/btnMessage"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:src="@drawable/ic_message"
+                            android:tint="#4CAF50"
+                            android:contentDescription="Mensaje"
+                            android:padding="12dp"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Acerca de -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/descriptionCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            android:backgroundTint="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ownerCard"/>
+
+        <!-- Requisitos de adopción -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/requirementsCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            android:backgroundTint="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/descriptionCard">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Requisitos de adopción"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#212121"/>
+
+                <!-- Requisito 1 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp"
+                    android:gravity="start">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_check_circle"
+                        android:tint="#4CAF50"
+                        android:contentDescription="Check"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Mayor de 18 años con identificación válida"
+                        android:textSize="15sp"
+                        android:textColor="#616161"
+                        android:layout_marginStart="16dp"/>
+
+                </LinearLayout>
+
+                <!-- Requisito 2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="16dp"
+                    android:gravity="start">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_check_circle"
+                        android:tint="#4CAF50"
+                        android:contentDescription="Check"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Vivienda adecuada con espacio suficiente"
+                        android:textSize="15sp"
+                        android:textColor="#616161"
+                        android:layout_marginStart="16dp"/>
+
+                </LinearLayout>
+
+                <!-- Requisito 3 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="16dp"
+                    android:gravity="start">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_check_circle"
+                        android:tint="#4CAF50"
+                        android:contentDescription="Check"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Compromiso de cuidado veterinario regular"
+                        android:textSize="15sp"
+                        android:textColor="#616161"
+                        android:layout_marginStart="16dp"/>
+
+                </LinearLayout>
+
+                <!-- Requisito 4 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="16dp"
+                    android:gravity="start">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_check_circle"
+                        android:tint="#4CAF50"
+                        android:contentDescription="Check"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Disponibilidad de tiempo para paseos y atención"
+                        android:textSize="15sp"
+                        android:textColor="#616161"
+                        android:layout_marginStart="16dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Botón de solicitud de adopción -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRequestAdoption"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="28dp"
+            android:text="ADOPTAR"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:cornerRadius="32dp"
+            app:elevation="8dp"
+            android:backgroundTint="#6C63FF"
+            android:textColor="@android:color/white"
+            app:icon="@drawable/ic_pets"
+            app:icon="@drawable/ic_heart"
+            app:iconGravity="textStart"
+            app:iconTint="@android:color/white"
+            app:iconSize="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/requirementsCard"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.cardview.widget.CardView>
+</ScrollView>
