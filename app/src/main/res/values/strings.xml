@@ -40,4 +40,40 @@
     <string name="notifications">Notificaciones</string>
     <string name="dark_mode">Tema oscuro</string>
     <string name="arrow">Flecha</string>
+
+
+    <string name="pet_image">Imagen de mascota</string>
+    <string name="add_favorite">Agregar a favoritos</string>
+    <string name="back">Regresar</string>
+    <string name="age">Edad</string>
+    <string name="gender">Género</string>
+    <string name="weight">Peso</string>
+
+    <string name="about_pet">Sobre la mascota</string>
+    <string name="shelter">Refugio</string>
+    <string name="shelter_contact">Contacto del refugio</string>
+    <string name="call">Llamar</string>
+    <string name="adoption_requirements">Requisitos de adopción</string>
+    <string name="requirement">Requisito</string>
+    <string name="req_age">Ser mayor de 18 años</string>
+    <string name="req_space">Tener espacio adecuado</string>
+    <string name="req_commitment">Compromiso a largo plazo</string>
+    <string name="req_documents">Documentación de identidad</string>
+    <string name="adopt_now">Adoptar ahora</string>
+
+
+    <string name="adoption">Adopción</string>
+    <string name="adoption_form_title">Solicitud de Adopción</string>
+    <string name="adoption_form_subtitle">Completa el formulario para adoptar a esta mascota</string>
+    <string name="full_name">Nombre completo</string>
+    <string name="phone">Teléfono</string>
+    <string name="address">Dirección</string>
+    <string name="previous_pets_question">¿Has tenido mascotas antes?</string>
+    <string name="adequate_space_question">¿Tienes espacio adecuado?</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
+    <string name="additional_comments">Comentarios adicionales (opcional)</string>
+    <string name="accept_terms">Acepto los términos y condiciones de adopción</string>
+    <string name="cancel">Cancelar</string>
+    <string name="submit_adoption">Enviar Solicitud</string>
 </resources>

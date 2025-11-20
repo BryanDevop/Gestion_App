@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "499493222240",
+    "project_id": "huellapp-b0bba",
+    "storage_bucket": "huellapp-b0bba.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:499493222240:android:9a83493e6446acd9e55005",
+        "android_client_info": {
+          "package_name": "com.boxing.gestioncanina"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLgJ5f-aUuLn7mkb8JZU3vPtlOsiUMbhg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

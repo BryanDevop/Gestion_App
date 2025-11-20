@@ -5,6 +5,7 @@
     <color name="purple_500">#7986CB</color>
     <color name="purple_700">#5C6BC0</color>
     <color name="teal_200">#80DEEA</color>
+
     <color name="teal_700">#26DAD7</color>
     <color name="text_logo">#2D42AD</color>
 
@@ -90,4 +91,25 @@
     <color name="google_bg">#FFFFFF</color>
     <color name="facebook_bg">#1877F2</color>
     <color name="apple_bg">#000000</color>
+
+
+    <!-- Colores para Bottom Navigation -->
+    <color name="bottom_nav_selected">#2196F3</color>
+    <color name="bottom_nav_unselected">#757575</color>
+
+    <!-- Colores adicionales -->
+    <color name="bottom_nav_background">#FFFFFF</color>
+
+
+    <!-- Colores del Bottom Navigation -->
+    <color name="nav_selected">#2563EB</color>
+    <color name="nav_unselected">#64748B</color>
+
+
+    <color name="shadow">#1A000000</color>
+    <color name="primary_color">#6C63FF</color>
+    <color name="gray_color">#9CA3AF</color>
+    <color name="bottom_nav_color">#6C63FF</color> <!-- ejemplo -->
+
+
 </resources>
