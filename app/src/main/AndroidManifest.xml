@@ -16,6 +16,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GestionCanina.NoActionBar">
         <activity
+            android:name=".ui.pets.Observaciones"
+            android:exported="false" />
+        <activity
+            android:name=".ui.pets.Medicamento"
+            android:exported="false" />
+        <activity
+            android:name=".ui.pets.Tratamiento"
+            android:exported="false" />
+        <activity
+            android:name=".ui.pets.Diagnostico"
+            android:exported="false" />
+        <activity
+            android:name=".ui.pets.Consultas_Veterinaria"
+            android:exported="false" />
+        <activity
             android:name=".ui.dashboard.Biography_Animal"
             android:exported="false" />
         <activity
