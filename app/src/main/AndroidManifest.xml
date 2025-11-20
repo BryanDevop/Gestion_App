@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GestionCanina.NoActionBar">
         <activity
+            android:name=".ui.components.Notification"
+            android:exported="false" />
+        <activity
             android:name=".ui.medical.Historial_Medical"
             android:exported="false" />
         <activity
