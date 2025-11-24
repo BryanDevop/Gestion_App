@@ -81,6 +81,9 @@ dependencies {
     // ========================================
     // Dependencia base de App Check
     implementation("com.google.firebase:firebase-appcheck")
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 
     // Debug Provider (solo para desarrollo)
     debugImplementation("com.google.firebase:firebase-appcheck-debug")

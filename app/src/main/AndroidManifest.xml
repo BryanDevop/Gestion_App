@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.boxing.gestioncanina">
-
     <!-- 🔹 Permisos necesarios -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -14,14 +13,33 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GestionCanina.NoActionBar"
-
-        android:usesCleartextTraffic="true"
-        android:networkSecurityConfig="@xml/network_security_config">
-
-        <!-- Actividades -->
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ui.pets.Tratamiento"
+            android:exported="false" />
+        <activity
+            android:name=".ui.pets.Medicamento"
+            android:exported="false" />
+        <activity
+            android:name=".ui.pets.Observaciones"
+            android:exported="false" />
+        <activity
+            android:name=".ui.pets.Diagnostico"
+            android:exported="false" />
+        <activity
+            android:name=".ui.pets.ejemplo"
+            android:exported="false"
+            android:theme="@style/Theme.GestionCanina.NoActionBar" />
+        <activity
+            android:name=".ui.pets.Consultas_Veterinaria"
+            android:exported="false" />
+        <activity
+            android:name=".ui.pets.PetsMe"
+            android:exported="false" /> <!-- Actividades -->
         <activity
             android:name=".ui.dashboard.Biography_Animal"
             android:exported="false" />
@@ -43,6 +61,7 @@
             android:theme="@style/Theme.GestionCanina.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -94,7 +113,6 @@
         <activity
             android:name=".ui.auth.RegisterActivity"
             android:exported="false" />
-
     </application>
 
 </manifest>

@@ -31,7 +31,7 @@
                 android:layout_height="match_parent"
                 android:contentDescription="@string/pet_image"
                 android:scaleType="centerCrop"
-                tools:src="@tools:sample/avatars" />
+                tools:src="@drawable/max" />
 
             <!-- Botón de favorito -->
             <com.google.android.material.floatingactionbutton.FloatingActionButton

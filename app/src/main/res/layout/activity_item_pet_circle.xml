@@ -14,6 +14,7 @@
         android:layout_height="80dp"
         app:cardCornerRadius="40dp"
         app:cardElevation="4dp"
+        android:layout_marginTop="18dp"
         app:cardBackgroundColor="@android:color/white">
 
         <FrameLayout
@@ -26,8 +27,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_pet_placeholder"
-                android:contentDescription="Foto de mascota" />
+                android:src="@drawable/max"
+                android:contentDescription="Foto de mascota"
+                />
 
             <!-- Ícono de agregar (solo para el botón +) -->
             <ImageView
