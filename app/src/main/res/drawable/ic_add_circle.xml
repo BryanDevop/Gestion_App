@@ -1,0 +1,19 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="32dp"
+    android:height="32dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- círculo -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeWidth="0"
+        android:pathData="M12,2A10,10 0 1,0 22,12A10,10 0 0,0 12,2z"/>
+    <!-- fondo relleno suave para que el icon se vea en cualquier fondo -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M12,2A10,10 0 1,0 22,12A10,10 0 0,0 12,2z"/>
+    <!-- símbolo + -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M13,11h3a1,1 0 0,1 0,2h-3v3a1,1 0 0,1 -2,0v-3H8a1,1 0 0,1 0,-2h3V8a1,1 0 0,1 2,0v3z"/>
+</vector>

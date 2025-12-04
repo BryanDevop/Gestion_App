@@ -118,4 +118,23 @@
     <color name="greenPrimary">#43A047</color>
 
 
+
+    <color name="accent">#FF9800</color>
+    <color name="background_light">#F5F5F5</color>
+    <color name="divider">#E0E0E0</color>
+    <color name="gray_medium">#9E9E9E</color>
+    <color name="info">#2196F3</color>
+    <color name="gray_dark">#555555</color>
+    <color name="gray_light">#D6D6D6</color>
+    <color name="success_light">#D6F5E6</color>
+    <color name="info_light">#D9ECF8</color>
+    <color name="warning_light">#FFF9DB</color>
+    <color name="purple">#9B59B6</color>
+
+
+
+
+
+
+
 </resources>

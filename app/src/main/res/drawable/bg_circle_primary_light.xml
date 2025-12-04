@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <!-- Color fondo claro basado en primary -->
+    <solid android:color="@color/primary_light" />
+
+    <!-- Opcional: borde suave -->
+    <stroke
+        android:width="1dp"
+        android:color="@color/primary" />
+
+    <!-- Tamaño si lo necesitas fijo (sino se adapta al view) -->
+    <!--
+    <size
+        android:width="40dp"
+        android:height="40dp" />
+    -->
+</shape>

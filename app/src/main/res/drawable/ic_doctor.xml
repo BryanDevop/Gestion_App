@@ -1,0 +1,22 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="14dp"
+    android:height="14dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Cabeza -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M12,11c2.21,0 4,-1.79 4,-4s-1.79,-4 -4,-4 -4,1.79 -4,4 1.79,4 4,4z"/>
+
+    <!-- Cuerpo tipo bata médica -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M18.39,14.56c-0.52,-0.33 -1.12,-0.56 -1.76,-0.65 -0.15,-0.02 -0.29,-0.03 -0.43,-0.03 -0.62,0 -1.21,0.18 -1.72,0.51l-0.48,0.31 -0.48,-0.31c-0.51,-0.33 -1.1,-0.51 -1.72,-0.51 -0.14,0 -0.28,0.01 -0.43,0.03 -0.64,0.09 -1.24,0.32 -1.76,0.65C8.06,15.14 7.51,16.05 7.51,17v3h9v-3c0,-0.95 -0.55,-1.86 -1.12,-2.44z"/>
+
+    <!-- Cruz médica -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M13,15h-2v2H9v2h2v2h2v-2h2v-2h-2z"/>
+</vector>
+

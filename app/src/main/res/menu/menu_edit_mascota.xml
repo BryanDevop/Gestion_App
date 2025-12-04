@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Compartir -->
+    <item
+        android:id="@+id/action_share"
+        android:title="Compartir"
+        android:icon="@drawable/ic_share"
+        app:iconTint="@color/white"
+        app:showAsAction="ifRoom" />
+
+    <!-- Ver historial -->
+    <item
+        android:id="@+id/action_history"
+        android:title="Ver historial"
+        android:icon="@drawable/ic_history"
+        app:iconTint="@color/white"
+        app:showAsAction="never" />
+
+
+
+    <!-- Exportar PDF -->
+    <item
+        android:id="@+id/action_export_pdf"
+        android:title="Exportar a PDF"
+        android:icon="@drawable/ic_pdf"
+        app:showAsAction="never" />
+
+</menu>
