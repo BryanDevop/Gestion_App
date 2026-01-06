@@ -1,4 +1,4 @@
-package com.boxing.gestioncanina.ui.pets
+package com.boxing.gestioncanina.ui.medical
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    android:background="@android:color/transparent"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="10dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/modalPetImage"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_pet_placeholder"
+            android:background="@drawable/circle_bg"/>
+
+        <TextView
+            android:id="@+id/modalPetName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre del perro"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/modalPetInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Información de la mascota"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:alpha="0.8"/>
+
+        <Button
+            android:id="@+id/modalAdoptButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Adoptar"
+            android:layout_marginTop="20dp"
+            />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

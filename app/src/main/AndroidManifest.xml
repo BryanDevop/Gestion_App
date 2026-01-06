@@ -19,27 +19,30 @@
         android:theme="@style/Theme.GestionCanina.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.pets.Tratamiento"
+            android:name=".Admin.MainAdmin"
             android:exported="false" />
         <activity
-            android:name=".ui.pets.Medicamento"
+            android:name=".ui.pets.Agenda"
             android:exported="false" />
         <activity
-            android:name=".ui.pets.Observaciones"
+            android:name=".ui.medical.Tratamiento"
             android:exported="false" />
         <activity
-            android:name=".ui.pets.Diagnostico"
+            android:name=".ui.medical.Medicamento"
             android:exported="false" />
         <activity
-            android:name=".ui.pets.ejemplo"
-            android:exported="false"
-            android:theme="@style/Theme.GestionCanina.NoActionBar" />
+            android:name=".ui.medical.Observaciones"
+            android:exported="false" />
         <activity
-            android:name=".ui.pets.Consultas_Veterinaria"
+            android:name=".ui.medical.Diagnostico"
             android:exported="false" />
         <activity
             android:name=".ui.pets.PetsMe"
-            android:exported="false" /> <!-- Actividades -->
+            android:exported="false"
+            android:theme="@style/Theme.GestionCanina.NoActionBar" />
+        <activity
+            android:name=".ui.medical.Consultas_Veterinaria"
+            android:exported="false" />
         <activity
             android:name=".ui.dashboard.Biography_Animal"
             android:exported="false" />
@@ -48,12 +51,6 @@
             android:exported="false" />
         <activity
             android:name=".ui.dashboard.MenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.dashboard.PetsAdapte"
-            android:exported="false" />
-        <activity
-            android:name=".ui.dashboard.AdoptionAdapter"
             android:exported="false" />
         <activity
             android:name=".ui.dashboard.Load_screen"

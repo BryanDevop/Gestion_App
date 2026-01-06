@@ -1,26 +1,7 @@
-package com.boxing.gestioncanina.models
+// Al final del archivo DashboardActivity.kt o en un archivo separado Models.kt
 
 import kotlinx.serialization.Serializable
 
-// Modelo para las mascotas del usuario
-data class Pet(
-    val id: String,
-    val name: String,
-    val imageUrl: String?,
-    val type: String, // "dog", "cat", etc.
-    val breed: String
-)
-
-// Modelo para mascotas en adopción (UI)
-data class AdoptionPet(
-    val id: String,
-    val name: String,
-    val breed: String,
-    val imageUrl: String,
-    val age: Int
-)
-
-// Modelo para mascotas en adopción (Supabase)
 @Serializable
 data class AdoptionPetSupabase(
     val id: String,

@@ -72,6 +72,9 @@
     <color name="background_main">#F8F9FD</color>
 
     <color name="input_background">#F5F7FA</color>
+    <color name="nav_item_color">#8A8A8A</color>  <!-- Gris -->
+    <color name="nav_item_selected">#0277FF</color> <!-- Azul -->
+
 
     <!-- Glass Effect -->
     <color name="glass_white">#E6FFFFFF</color>

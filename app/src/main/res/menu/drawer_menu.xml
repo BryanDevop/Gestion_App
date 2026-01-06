@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_dashboard"
+            android:icon="@drawable/ic_dashboard"
+            android:title="Panel de Control" />
+
+        <item
+            android:id="@+id/nav_surgeries"
+            android:icon="@drawable/ic_surgery"
+            android:title="Cirugías" />
+
+        <item
+            android:id="@+id/nav_grooming"
+            android:icon="@drawable/ic_grooming"
+            android:title="Peluquería" />
+
+        <item
+            android:id="@+id/nav_treatments"
+            android:icon="@drawable/ic_pets"
+            android:title="Tratamientos" />
+
+        <item
+            android:id="@+id/nav_appointments"
+            android:icon="@drawable/ic_calendar"
+            android:title="Citas" />
+
+        <item
+            android:id="@+id/nav_clients"
+            android:icon="@drawable/ic_clients"
+            android:title="Clientes" />
+    </group>
+
+    <item android:title="Reportes">
+        <menu>
+            <item
+                android:id="@+id/nav_reports"
+                android:icon="@drawable/ic_chart"
+                android:title="Estadísticas" />
+
+            <item
+                android:id="@+id/nav_finances"
+                android:icon="@drawable/ic_money"
+                android:title="Finanzas" />
+
+            <item
+                android:id="@+id/nav_inventory"
+                android:icon="@drawable/ic_inventory"
+                android:title="Inventario" />
+        </menu>
+    </item>
+
+    <item android:title="Configuración">
+        <menu>
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_settings"
+                android:title="Configuración" />
+
+            <item
+                android:id="@+id/nav_notifications"
+                android:icon="@drawable/ic_notifications"
+                android:title="Notificaciones" />
+
+            <item
+                android:id="@+id/nav_help"
+                android:icon="@drawable/ic_help"
+                android:title="Ayuda" />
+
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_logout"
+                android:title="Cerrar Sesión" />
+        </menu>
+    </item>
+
+</menu>

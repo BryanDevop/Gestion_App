@@ -2,9 +2,7 @@ package com.boxing.gestioncanina
 
 import android.app.Application
 import android.util.Log
-import com.google.firebase.FirebaseApp
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import com.boxing.gestioncanina.data.network.Supabase
 
 class MyApplication : Application() {
 
@@ -12,20 +10,21 @@ class MyApplication : Application() {
         super.onCreate()
 
         try {
-            FirebaseApp.initializeApp(this)
-            Log.d("MyApplication", "✅ Firebase inicializado correctamente")
+            // Inicializar Supabase
+            Supabase.initialize()
+            Log.d("MyApplication", "✅ Supabase inicializado correctamente")
 
-            // 🔧 Usar emuladores locales para EVITAR reCAPTCHA
             if (BuildConfig.DEBUG) {
-                // Conectar a emuladores locales
-                FirebaseAuth.getInstance().useEmulator("10.0.2.2", 9099)
-                FirebaseFirestore.getInstance().useEmulator("10.0.2.2", 8080)
-                Log.d("MyApplication", "🔧 Usando Firebase Emulators (sin reCAPTCHA)")
+                Log.d("MyApplication", "🔧 Modo DEBUG - Usando Supabase en producción")
             }
 
         } catch (e: Exception) {
-            Log.e("MyApplication", "❌ Error inicializando Firebase", e)
+            Log.e("MyApplication", "❌ Error inicializando Supabase", e)
             e.printStackTrace()
         }
     }
+}
+
+private fun Supabase.initialize() {
+    //Nada que implementar por ahora
 }

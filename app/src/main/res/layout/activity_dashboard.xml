@@ -369,23 +369,24 @@
             </LinearLayout>
 
             <!-- Grid de mascotas en adopción con nuevo diseño -->
+
+            <!-- ========================================== -->
+            <!-- SECCIÓN: SERVICIOS VETERINARIOS -->
+            <!-- ========================================== -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/adoptionRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:clipToPadding="false"
+                android:overScrollMode="never"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:paddingBottom="8dp"
                 android:scrollbars="none"
-                android:overScrollMode="never"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 tools:listitem="@layout/item_adoption_pet_card" />
 
-            <!-- ========================================== -->
-            <!-- SECCIÓN: SERVICIOS VETERINARIOS -->
-            <!-- ========================================== -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

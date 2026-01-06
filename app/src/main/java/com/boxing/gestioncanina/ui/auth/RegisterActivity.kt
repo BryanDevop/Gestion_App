@@ -2,23 +2,17 @@ package com.boxing.gestioncanina.ui.auth
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.boxing.gestioncanina.R
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthSettings
-import com.google.firebase.firestore.FirebaseFirestore
 
 class RegisterActivity : AppCompatActivity() {
-
-    private lateinit var auth: FirebaseAuth
-    private lateinit var db: FirebaseFirestore
 
     private lateinit var etName: EditText
     private lateinit var etEmail: EditText
@@ -26,6 +20,8 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var etPassword: EditText
     private lateinit var etConfirmPassword: EditText
     private lateinit var btnRegister: Button
+
+    private val viewModel: RegisterViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,27 +34,40 @@ class RegisterActivity : AppCompatActivity() {
             insets
         }
 
-        // 🔹 Inicializa Firebase
-        auth = FirebaseAuth.getInstance()
+        initViews()
+        setupObservers()
+        setupListeners()
+    }
 
-        // ✅ DESACTIVAR reCAPTCHA para desarrollo
-        try {
-            auth.firebaseAuthSettings.setAppVerificationDisabledForTesting(true)
-            Log.d("RegisterActivity", "reCAPTCHA desactivado para pruebas")
-        } catch (e: Exception) {
-            Log.w("RegisterActivity", "No se pudo desactivar reCAPTCHA: ${e.message}")
-        }
-
-        db = FirebaseFirestore.getInstance()
-
-        // 🔹 Inicializa vistas
+    private fun initViews() {
         etName = findViewById(R.id.etName)
         etEmail = findViewById(R.id.etEmail)
         etLocation = findViewById(R.id.etLocation)
         etPassword = findViewById(R.id.etPassword)
         etConfirmPassword = findViewById(R.id.etConfirmPassword)
         btnRegister = findViewById(R.id.btnRegister)
+    }
 
+    private fun setupObservers() {
+        viewModel.registerState.observe(this) { state ->
+            when (state) {
+                is RegisterViewModel.RegisterState.Loading -> {
+                    setLoadingState(true)
+                }
+                is RegisterViewModel.RegisterState.Success -> {
+                    setLoadingState(false)
+                    Toast.makeText(this, state.message, Toast.LENGTH_SHORT).show()
+                    navigateToLogin()
+                }
+                is RegisterViewModel.RegisterState.Error -> {
+                    setLoadingState(false)
+                    Toast.makeText(this, state.message, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
+
+    private fun setupListeners() {
         btnRegister.setOnClickListener {
             registerUser()
         }
@@ -71,77 +80,16 @@ class RegisterActivity : AppCompatActivity() {
         val password = etPassword.text.toString().trim()
         val confirmPassword = etConfirmPassword.text.toString().trim()
 
-        // 🔹 Validaciones básicas
-        if (name.isEmpty() || email.isEmpty() || location.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show()
-            return
-        }
+        viewModel.registerUser(name, email, location, password, confirmPassword)
+    }
 
-        if (password.length < 6) {
-            Toast.makeText(this, "La contraseña debe tener al menos 6 caracteres", Toast.LENGTH_SHORT).show()
-            return
-        }
+    private fun setLoadingState(isLoading: Boolean) {
+        btnRegister.isEnabled = !isLoading
+        btnRegister.text = if (isLoading) "Registrando..." else "Registrar"
+    }
 
-        if (password != confirmPassword) {
-            Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        // 🔹 Deshabilitar botón mientras procesa
-        btnRegister.isEnabled = false
-        btnRegister.text = "Registrando..."
-
-        // 🔹 Registrar con Firebase Authentication
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val userId = auth.currentUser?.uid
-                    Log.d("RegisterActivity", "Usuario creado exitosamente: $userId")
-
-                    // 🔹 Guardar datos adicionales en Firestore
-                    val userMap = hashMapOf(
-                        "name" to name,
-                        "email" to email,
-                        "location" to location,
-                        "createdAt" to System.currentTimeMillis()
-                    )
-
-                    if (userId != null) {
-                        db.collection("users").document(userId)
-                            .set(userMap)
-                            .addOnSuccessListener {
-                                Log.d("RegisterActivity", "Datos guardados en Firestore")
-                                Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
-
-                                // 🔹 Ir a Login
-                                startActivity(Intent(this, LoginActivity::class.java))
-                                finish()
-                            }
-                            .addOnFailureListener { e ->
-                                Log.e("RegisterActivity", "Error guardando datos", e)
-                                Toast.makeText(this, "Error al guardar datos: ${e.message}", Toast.LENGTH_SHORT).show()
-
-                                // Reactivar botón
-                                btnRegister.isEnabled = true
-                                btnRegister.text = "Registrar"
-                            }
-                    }
-                } else {
-                    val errorCode = (task.exception as? com.google.firebase.auth.FirebaseAuthException)?.errorCode
-                    val errorMessage = when (errorCode) {
-                        "ERROR_EMAIL_ALREADY_IN_USE" -> "Este email ya está registrado"
-                        "ERROR_WEAK_PASSWORD" -> "La contraseña es muy débil"
-                        "ERROR_INVALID_EMAIL" -> "Email inválido"
-                        else -> "Error en el registro: ${task.exception?.message}"
-                    }
-
-                    Log.e("RegisterActivity", "Error en registro: $errorCode", task.exception)
-                    Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
-
-                    // Reactivar botón
-                    btnRegister.isEnabled = true
-                    btnRegister.text = "Registrar"
-                }
-            }
+    private fun navigateToLogin() {
+        startActivity(Intent(this, LoginActivity::class.java))
+        finish()
     }
 }
