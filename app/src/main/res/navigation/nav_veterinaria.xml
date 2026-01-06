@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_veterinaria"
+    app:startDestination="@id/veterinariaMainFragment">
+
+    <!-- Fragment principal del módulo -->
+    <fragment
+        android:id="@+id/veterinariaMainFragment"
+        android:name="com.boxing.gestioncanina.veterinaria.ui.main.VeterinariaMainFragment"
+        android:label="Veterinaria"
+        tools:layout="@layout/fragment_veterinaria_main">
+
+        <action android:id="@+id/action_main_to_mascotaList"
+            app:destination="@id/mascotaListFragment" />
+
+        <action android:id="@+id/action_main_to_mascotaRegister"
+            app:destination="@id/mascotaRegisterFragment" />
+
+        <action android:id="@+id/action_main_to_vacunaList"
+            app:destination="@id/vacunaListFragment" />
+
+        <action android:id="@+id/action_main_to_citaList"
+            app:destination="@id/citaListFragment" />
+
+        <action android:id="@+id/action_main_to_tratamientoList"
+            app:destination="@id/tratamientoListFragment" />
+
+        <action android:id="@+id/action_main_to_emergenciaList"
+            app:destination="@id/emergenciaListFragment" />
+
+        <action android:id="@+id/action_main_to_estadisticas"
+            app:destination="@id/estadisticasVeterinariaFragment" />
+
+        <action android:id="@+id/action_main_to_settings"
+            app:destination="@id/veterinarioSettingsFragment" />
+    </fragment>
+
+    <!-- Lista de mascotas -->
+    <fragment
+        android:id="@+id/mascotaListFragment"
+        android:name="com.boxing.gestioncanina.veterinaria.ui.mascota.list.MascotaListFragment"
+        android:label="Mis Mascotas"
+        tools:layout="@layout/fragment_mascota_list">
+
+        <action android:id="@+id/action_mascotaList_to_mascotaRegister"
+            app:destination="@id/mascotaRegisterFragment" />
+
+        <action android:id="@+id/action_mascotaList_to_mascotaDetail"
+            app:destination="@id/mascotaDetailFragment" />
+
+        <action android:id="@+id/action_mascotaList_to_mascotaEdit"
+            app:destination="@id/mascotaEditFragment" />
+
+        <action android:id="@+id/action_mascotaList_to_historial"
+            app:destination="@id/historialMedicoFragment" />
+    </fragment>
+
+    <!-- Registrar mascota -->
+    <fragment
+        android:id="@+id/mascotaRegisterFragment"
+        android:name="com.boxing.gestioncanina.veterinaria.ui.mascota.register.MascotaRegisterFragment"
+        android:label="Registrar Mascota"
+        tools:layout="@layout/fragment_mascota_register" />
+
+    <!-- Editar mascota -->
+    <fragment
+        android:id="@+id/mascotaEditFragment"
+        android:name="com.boxing.gestioncanina.veterinaria.ui.mascota.edit.MascotaEditFragment"
+        android:label="Editar Mascota"
+        tools:layout="@layout/fragment_mascota_edit">
+
+        <argument android:name="mascotaId" app:argType="long" />
+    </fragment>
+
+    <!-- Detalle -->
+    <fragment
+        android:id="@+id/mascotaDetailFragment"
+        android:name="com.boxing.gestioncanina.veterinaria.ui.mascota.detail.MascotaDetailFragment"
+        android:label="Detalle de Mascota"
+        tools:layout="@layout/fragment_mascota_detail">
+
+        <argument android:name="mascotaId" app:argType="long" />
+
+        <action android:id="@+id/action_detail_to_edit"
+            app:destination="@id/mascotaEditFragment" />
+
+        <action android:id="@+id/action_detail_to_historial"
+            app:destination="@id/historialMedicoFragment" />
+
+        <action android:id="@+id/action_detail_to_addConsulta"
+            app:destination="@id/addConsultaFragment" />
+
+        <action android:id="@+id/action_detail_to_vacunaList"
+            app:destination="@id/vacunaListFragment" />
+
+        <action android:id="@+id/action_detail_to_citaList"
+            app:destination="@id/citaListFragment" />
+
+        <action android:id="@+id/action_detail_to_tratamientoList"
+            app:destination="@id/tratamientoListFragment" />
+    </fragment>
+
+    <!-- Historial médico -->
+    <fragment
+        android:id="@+id/historialMedicoFragment"
+        android:name="com.boxing.gestioncanina.veterinaria.ui.consulta.history.HistorialMedicoFragment"
+        android:label="Historial Médico"
+        tools:layout="@layout/fragment_historial_medico">
+
+        <argument android:name="mascotaId" app:argType="long" />
+
+        <action android:id="@+id/action_historial_to_addConsulta"
+            app:destination="@id/addConsultaFragment" />
+
+        <action android:id="@+id/action_historial_to_editConsulta"
+            app:destination="@id/editConsultaFragment" />
+    </fragment>
+
+    <!-- Agregar consulta -->
+    <fragment
+        android:id="@+id/addConsultaFragment"
+        android:name="com.boxing.gestioncanina.veterinaria.ui.consulta.add.AddConsultaFragment"
+        android:label="Nueva Consulta"
+        tools:layout="@layout/fragment_add_consulta">
+        <argument android:name="mascotaId" app:argType="long" />
+    </fragment>
+
+    <!-- Editar consulta -->
+    <fragment
+        android:id="@+id/editConsultaFragment"
+        android:name="com.boxing.gestioncanina.veterinaria.ui.consulta.edit.EditConsultaFragment"
+        android:label="Editar Consulta"
+        tools:layout="@layout/fragment_edit_consulta">
+
+        <argument android:name="consultaId" app:argType="long" />
+    </fragment>
+
+    <!-- VACUNAS -->
+    <fragment
+        android:id="@+id/vacunaListFragment"
+        android:name="com.boxing.gestioncanina.veterinaria.ui.vacunas.list.VacunaListFragment"
+        android:label="Vacunas"
+        tools:layout="@layout/fragment_vacuna_list">
+
+        <action android:id="@+id/action_vacunaList_to_register"
+            app:destination="@id/vacunaRegisterFragment" />
+
+        <action android:id="@+id/action_vacunaList_to_edit"
+            app:destination="@id/vacunaEditFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/vacunaRegisterFragment"
+        android:name="com.boxing.gestioncanina.veterinaria.ui.vacunas.register.VacunaRegisterFragment"
+        android:label="Registrar Vacuna"
+        tools:layout="@layout/fragment_vacuna_register">
+        <argument android:name="mascotaId" app:argType="long" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/vacunaEditFragment"
+        android:name="com.boxing.gestioncanina.veterinaria.ui.vacunas.edit.VacunaEditFragment"
+        android:label="Editar Vacuna"
+        tools:layout="@layout/fragment_vacuna_edit">
+        <argument android:name="vacunaId" app:argType="long" />
+    </fragment>
+
+    <!-- CITAS -->
+    <fragment
+        android:id="@+id/citaListFragment"
+        android:name="com.boxing.gestioncanina.veterinaria.ui.citas.list.CitaListFragment"
+        android:label="Citas"
+        tools:layout="@layout/fragment_cita_list">
+
+        <action android:id="@+id/action_citaList_to_register"
+            app:destination="@id/citaRegisterFragment" />
+
+        <action android:id="@+id/action_citaList_to_edit"
+            app:destination="@id/citaEditFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/citaRegisterFragment"
+        android:name="com.boxing.gestioncanina.veterinaria.ui.citas.register.CitaRegisterFragment"
+        android:label="Registrar Cita"
+        tools:layout="@layout/fragment_cita_register">
+        <argument android:name="mascotaId" app:argType="long" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/citaEditFragment"
+        android:name="com.boxing.gestioncanina.veterinaria.ui.citas.edit.CitaEditFragment"
+        android:label="Editar Cita"
+        tools:layout="@layout/fragment_cita_edit">
+        <argument android:name="citaId" app:argType="long" />
+    </fragment>
+
+    <!-- TRATAMIENTOS -->
+    <fragment
+        android:id="@+id/tratamientoListFragment"
+        android:name="com.boxing.gestioncanina.veterinaria.ui.tratamientos.list.TratamientoListFragment"
+        android:label="Tratamientos"
+        tools:layout="@layout/fragment_tratamiento_list">
+
+        <action android:id="@+id/action_tratamientoList_to_register"
+            app:destination="@id/tratamientoRegisterFragment" />
+
+        <action android:id="@+id/action_tratamientoList_to_edit"
+            app:destination="@id/tratamientoEditFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/tratamientoRegisterFragment"
+        android:name="com.boxing.gestioncanina.veterinaria.ui.tratamientos.register.TratamientoRegisterFragment"
+        android:label="Registrar Tratamiento"
+        tools:layout="@layout/fragment_tratamiento_register">
+        <argument android:name="mascotaId" app:argType="long" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/tratamientoEditFragment"
+        android:name="com.boxing.gestioncanina.veterinaria.ui.tratamientos.edit.TratamientoEditFragment"
+        android:label="Editar Tratamiento"
+        tools:layout="@layout/fragment_tratamiento_edit">
+        <argument android:name="tratamientoId" app:argType="long" />
+    </fragment>
+
+    <!-- EMERGENCIAS -->
+    <fragment
+        android:id="@+id/emergenciaListFragment"
+        android:name="com.boxing.gestioncanina.veterinaria.ui.emergencias.list.EmergenciaListFragment"
+        android:label="Emergencias"
+        tools:layout="@layout/fragment_emergencia_list">
+
+        <action android:id="@+id/action_emergenciaList_to_register"
+            app:destination="@id/emergenciaRegisterFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/emergenciaRegisterFragment"
+        android:name="com.boxing.gestioncanina.veterinaria.ui.emergencias.register.EmergenciaRegisterFragment"
+        android:label="Registrar Emergencia"
+        tools:layout="@layout/fragment_emergencia_register">
+        <argument android:name="mascotaId" app:argType="long" />
+    </fragment>
+
+    <!-- ESTADÍSTICAS -->
+    <fragment
+        android:id="@+id/estadisticasVeterinariaFragment"
+        android:name="com.boxing.gestioncanina.veterinaria.ui.estadisticas.EstadisticasVeterinariaFragment"
+        android:label="Estadísticas"
+        tools:layout="@layout/fragment_estadisticas_veterinaria" />
+
+    <!-- AJUSTES -->
+    <fragment
+        android:id="@+id/veterinarioSettingsFragment"
+        android:name="com.boxing.gestioncanina.veterinaria.ui.settings.VeterinarioSettingsFragment"
+        android:label="Configuración"
+        tools:layout="@layout/fragment_veterinario_settings" />
+
+</navigation>

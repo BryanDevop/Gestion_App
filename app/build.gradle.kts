@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
+    id("kotlin-kapt")
     id("org.jetbrains.kotlin.plugin.serialization")
 }
 
@@ -26,6 +28,7 @@ android {
         debug {
             isMinifyEnabled = false
             isDebuggable = true
+            // NO agregamos applicationIdSuffix porque Firebase necesita el package exacto
             versionNameSuffix = "-DEBUG"
         }
 
@@ -64,12 +67,38 @@ dependencies {
     // ========================================
     // ANDROID CORE
     // ========================================
+
+    // =====================================================
+    // ANDROID CORE
+    // =====================================================
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.activity:activity-ktx:1.9.3")
     implementation("androidx.constraintlayout:constraintlayout:2.2.0")
     implementation("androidx.fragment:fragment-ktx:1.8.5")
+    implementation("androidx.fragment:fragment-ktx:1.8.5")
+
+    // =====================================================
+    // ROOM DATABASE
+    // =====================================================
+    val room_version = "2.6.1"
+    implementation("androidx.room:room-runtime:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
+
+    // =====================================================
+    // NAVIGATION COMPONENT
+    // =====================================================
+    val nav_version = "2.7.6"
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+
+    // =====================================================
+    // COROUTINES
+    // =====================================================
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.9.0")
 
     // ========================================
     // SUPABASE (USANDO BOM)
@@ -79,6 +108,20 @@ dependencies {
     implementation("io.github.jan-tennert.supabase:gotrue-kt")
     implementation("io.github.jan-tennert.supabase:realtime-kt")
     implementation("io.github.jan-tennert.supabase:storage-kt")
+    // =====================================================
+    // LIFECYCLE & VIEWMODEL
+    // =====================================================
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
+
+    // =====================================================
+    // FIREBASE (BOM + Servicios)
+    // =====================================================
+    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation("com.google.firebase:firebase-analytics-ktx")
 
     // ========================================
     // KTOR (Requerido por Supabase)
@@ -108,7 +151,16 @@ dependencies {
     // SERIALIZACIÓN
     // ========================================
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+    // AppCheck
+    implementation("com.google.firebase:firebase-appcheck")
+    debugImplementation("com.google.firebase:firebase-appcheck-debug")
+    releaseImplementation("com.google.firebase:firebase-appcheck-playintegrity")
 
+    // =====================================================
+    // GLIDE (IMÁGENES)
+    // =====================================================
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    kapt("com.github.bumptech.glide:compiler:4.16.0")
     // ========================================
     // COROUTINES
     // ========================================
@@ -122,6 +174,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
 
+    // =====================================================
     // ========================================
     // NAVIGATION COMPONENT
     // ========================================
@@ -131,8 +184,9 @@ dependencies {
 
     // ========================================
     // TESTING
-    // ========================================
+    // =====================================================
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
 }

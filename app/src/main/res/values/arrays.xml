@@ -1,0 +1,15 @@
+<resources>
+    <string-array name="tipos_mascota">
+        <item>Perro</item>
+        <item>Gato</item>
+        <item>Ave</item>
+        <item>Conejo</item>
+        <item>Otro</item>
+    </string-array>
+
+    <string-array name="sexos_mascota">
+        <item>Macho</item>
+        <item>Hembra</item>
+    </string-array>
+</resources>
+

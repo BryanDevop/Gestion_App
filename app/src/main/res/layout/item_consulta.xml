@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Indicador de color lateral -->
+        <View
+            android:id="@+id/indicadorColor"
+            android:layout_width="4dp"
+            android:layout_height="0dp"
+            android:background="@color/primary"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- Fecha -->
+        <LinearLayout
+            android:id="@+id/layoutFecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginStart="12dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/indicadorColor">
+
+            <TextView
+                android:id="@+id/tvDia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary" />
+
+            <TextView
+                android:id="@+id/tvMes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MAR"
+                android:textSize="12sp"
+                android:textColor="@color/gray_medium" />
+
+        </LinearLayout>
+
+        <!-- Contenido principal -->
+        <LinearLayout
+            android:id="@+id/layoutContenido"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/layoutFecha"
+            app:layout_constraintEnd_toStartOf="@id/btnMenu"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <!-- Motivo -->
+            <TextView
+                android:id="@+id/tvMotivo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Revisión General"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+            <!-- Veterinario -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_doctor"
+                    app:tint="@color/gray_medium" />
+
+                <TextView
+                    android:id="@+id/tvVeterinario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dr. Juan Pérez"
+                    android:textSize="13sp"
+                    android:textColor="@color/gray_dark"
+                    android:layout_marginStart="6dp" />
+
+            </LinearLayout>
+
+            <!-- Diagnóstico resumido -->
+            <TextView
+                android:id="@+id/tvDiagnostico"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Estado general saludable. Se recomienda continuar con alimentación balanceada."
+                android:textSize="12sp"
+                android:textColor="@color/gray_medium"
+                android:layout_marginTop="6dp"
+                android:maxLines="2"
+                android:ellipsize="end" />
+
+            <!-- Etiquetas/Tags -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <!-- Tag Peso -->
+                <TextView
+                    android:id="@+id/tagPeso"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Peso: 12.5kg"
+                    android:textSize="10sp"
+                    android:textColor="@color/success"
+                    android:background="@drawable/bg_tag_success"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="4dp"
+                    android:layout_marginEnd="6dp" />
+
+                <!-- Tag Temperatura -->
+                <TextView
+                    android:id="@+id/tagTemperatura"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Temp: 38°C"
+                    android:textSize="10sp"
+                    android:textColor="@color/info"
+                    android:background="@drawable/bg_tag_info"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="4dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Botón menú de opciones -->
+        <ImageButton
+            android:id="@+id/btnMenu"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_more_vert"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="@color/gray_medium"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

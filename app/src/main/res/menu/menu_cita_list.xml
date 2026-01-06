@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Buscar -->
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search"
+        android:title="Buscar"
+        app:iconTint="@color/white"
+        app:showAsAction="ifRoom" />
+
+    <!-- Filtrar por fecha -->
+    <item
+        android:id="@+id/action_filter_date"
+        android:icon="@drawable/ic_filter"
+        android:title="Filtrar por fecha"
+        app:iconTint="@color/white"
+        app:showAsAction="ifRoom" />
+
+    <!-- Opciones adicionales -->
+    <item
+        android:id="@+id/action_more"
+        android:icon="@drawable/ic_more_vert"
+        android:title="Más opciones"
+        app:iconTint="@color/white"
+        app:showAsAction="always">
+
+        <menu>
+            <!-- Ordenar -->
+            <item
+                android:id="@+id/action_sort"
+                android:icon="@drawable/ic_sort"
+                android:title="Ordenar">
+
+                <menu>
+                    <item
+                        android:id="@+id/sort_date_asc"
+                        android:title="Fecha (Más antigua primero)" />
+
+                    <item
+                        android:id="@+id/sort_date_desc"
+                        android:title="Fecha (Más reciente primero)" />
+
+                    <item
+                        android:id="@+id/sort_mascota"
+                        android:title="Por mascota (A-Z)" />
+
+                    <item
+                        android:id="@+id/sort_estado"
+                        android:title="Por estado" />
+                </menu>
+            </item>
+
+            <!-- Ver calendario -->
+            <item
+                android:id="@+id/action_calendar_view"
+                android:icon="@drawable/ic_calendar"
+                android:title="Ver calendario" />
+
+            <!-- Exportar -->
+            <item
+                android:id="@+id/action_export"
+                android:icon="@drawable/ic_export"
+                android:title="Exportar citas" />
+
+            <!-- Recordatorios -->
+            <item
+                android:id="@+id/action_notifications"
+                android:icon="@drawable/ic_notifications"
+                android:title="Configurar recordatorios" />
+
+            <!-- Estadísticas -->
+            <item
+                android:id="@+id/action_statistics"
+                android:icon="@drawable/ic_chart"
+                android:title="Ver estadísticas" />
+
+            <!-- Eliminar completadas -->
+            <item
+                android:id="@+id/action_delete_completed"
+                android:icon="@drawable/ic_delete"
+                android:title="Eliminar completadas" />
+
+            <!-- Ayuda -->
+            <item
+                android:id="@+id/action_help"
+                android:icon="@drawable/ic_help"
+                android:title="Ayuda" />
+
+        </menu>
+
+    </item>
+
+</menu>
