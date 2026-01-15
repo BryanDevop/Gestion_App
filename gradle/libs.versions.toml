@@ -8,6 +8,7 @@ lifecycle = "2.8.7"
 navigation = "2.8.5"
 serialization = "1.6.3"
 activity = "1.12.1"
+datastoreCore = "1.2.0"
 
 [libraries]
 # Android Core
@@ -44,6 +45,7 @@ androidx-lifecycle-runtime = { group = "androidx.lifecycle", name = "lifecycle-r
 androidx-navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
 androidx-navigation-ui = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+androidx-datastore-core = { group = "androidx.datastore", name = "datastore-core", version.ref = "datastoreCore" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

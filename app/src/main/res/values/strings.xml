@@ -3,6 +3,13 @@
     <string name="logo_app">Logo de la aplicación</string>
     <string name="olvidaste_tu_contrase_a">¿Olvidaste tu contraseña?</string>
     <string name="subir_foto">Subir foto</string>
+    <string name="admin_avatar">Avatar del Administrador</string>
+    <string name="active_icon">Icono Activo</string>
+    <string name="calendar_icon">Icono Calendario</string>
+    <string name="paw_icon">🐾</string>
+    <string name="users_icon">👤</string>
+    <string name="pets_icon">🐶</string>
+
 
     <string name="app_logo">Logo de la aplicación</string>
     <string name="decoration">Decoración</string>

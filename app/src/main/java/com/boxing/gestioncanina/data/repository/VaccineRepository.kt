@@ -1,4 +1,0 @@
-package com.boxing.gestioncanina.data.repository
-
-class VaccineRepository {
-}

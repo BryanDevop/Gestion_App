@@ -78,6 +78,8 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.2.0")
     implementation("androidx.fragment:fragment-ktx:1.8.5")
     implementation("androidx.fragment:fragment-ktx:1.8.5")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    implementation(libs.androidx.datastore.core)
 
     // =====================================================
     // ROOM DATABASE

@@ -1,9 +1,8 @@
-package com.boxing.gestioncanina.data.model
-
+package com.boxing.gestioncanina.data.models
 data class AdoptionPet(
     val id: String,
     val name: String,
     val breed: String,
-    val age: Int,
-    val imageUrl: String
+    val imageUrl: String,
+    val age: Int
 )

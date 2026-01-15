@@ -5,9 +5,20 @@
     <color name="purple_500">#7986CB</color>
     <color name="purple_700">#5C6BC0</color>
     <color name="teal_200">#80DEEA</color>
+    <color name="background_color">#F5F5F5</color>
+    <color name="ripple_color">#33000000</color>
 
     <color name="teal_700">#26DAD7</color>
     <color name="text_logo">#2D42AD</color>
+    <!-- Añade estos colores adicionales -->
+    <color name="card_purple">#AB47BC</color>
+    <color name="card_green">#66BB6A</color>
+    <color name="primary_purple">#6A1B9A</color>
+    <color name="card_blue">#2196F3</color>
+    <color name="card_orange">#FF9800</color>
+
+    <color name="chip_selected">#6B90FF</color>
+    <color name="chip_unselected">#F3F4F6</color>
 
     <!-- Primarios -->
     <color name="primary">#2563EB</color>
