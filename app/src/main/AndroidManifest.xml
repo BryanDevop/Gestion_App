@@ -23,6 +23,13 @@
         android:theme="@style/Theme.GestionCanina.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.citas.RegistrarCitaActivity"
+            android:exported="false"
+            android:theme="@style/Theme.GestionCanina.NoActionBar" />
+        <activity
+            android:name=".ui.medical.FragmentCitasRegister"
+            android:exported="false" />
+        <activity
             android:name=".ui.pets.AdoptionPetsFragment"
             android:exported="false" />
         <activity
@@ -119,6 +126,9 @@
             android:exported="false" />
         <activity
             android:name=".ui.auth.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.adoption.AdoptionPetsActivity"
             android:exported="false" />
         <activity
             android:name=".ui.auth.RegisterActivity"

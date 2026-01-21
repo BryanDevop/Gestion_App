@@ -13,6 +13,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import com.boxing.gestioncanina.ui.medical.ConsultasVeterinariaActivity
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
@@ -22,12 +23,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.boxing.gestioncanina.R
 import com.boxing.gestioncanina.data.network.Supabase
-import com.boxing.gestioncanina.models.AdoptionPet
+import com.boxing.gestioncanina.data.models.AdoptionPet
 import com.boxing.gestioncanina.data.models.AdoptionPetUI
 import com.boxing.gestioncanina.data.model.Pet
 import com.boxing.gestioncanina.models.PetSupabase
 import com.boxing.gestioncanina.ui.adoption.AdoptionPetsActivity
-import com.boxing.gestioncanina.ui.medical.Consultas_Veterinaria
 import com.boxing.gestioncanina.ui.settings.ProfileFragment
 import com.boxing.gestioncanina.ui.settings.SettingsFragment
 import com.bumptech.glide.Glide
@@ -41,7 +41,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.io.File
+import kotlinx.serialization.Serializable
 import java.util.UUID
 
 class DashboardActivity : AppCompatActivity() {
@@ -128,6 +128,9 @@ class DashboardActivity : AppCompatActivity() {
             loadUserName()
             Log.d(TAG, "✅ Nombre de usuario cargado")
 
+            loadUserProfilePhoto()
+            Log.d(TAG, "✅ Foto de perfil cargada")
+
             setupMyPetsRecyclerView()
             Log.d(TAG, "✅ RecyclerView de mis mascotas configurado")
 
@@ -150,6 +153,66 @@ class DashboardActivity : AppCompatActivity() {
             Toast.makeText(this, "Error al inicializar: ${e.message}", Toast.LENGTH_LONG).show()
         }
     }
+
+
+    private fun loadUserProfilePhoto() {
+        Log.d(TAG, "📸 Cargando foto de perfil del usuario...")
+
+        val user = Supabase.client.auth.currentUserOrNull()
+
+        if (user == null) {
+            Log.w(TAG, "⚠️ No hay usuario autenticado")
+            return
+        }
+
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                Log.d(TAG, "🔍 Consultando tabla 'profiles' para user_id: ${user.id}")
+
+                val response = Supabase.client
+                    .from("profiles")
+                    .select(Columns.ALL) {
+                        filter {
+                            eq("id", user.id)
+                        }
+                    }
+                    .decodeSingleOrNull<UserProfile>()
+
+                Log.d(TAG, "📦 Respuesta recibida: ${response?.toString() ?: "null"}")
+
+                withContext(Dispatchers.Main) {
+                    if (response != null && !response.avatar_url.isNullOrEmpty()) {
+                        Log.d(TAG, "✅ URL de avatar encontrada: ${response.avatar_url}")
+
+                        // Cargar la imagen con Glide
+                        Glide.with(this@DashboardActivity)
+                            .load(response.avatar_url)
+                            .placeholder(R.drawable.ic_default_profile)
+                            .error(R.drawable.ic_default_profile)
+                            .circleCrop()
+                            .into(profileImage)
+
+                        Log.d(TAG, "✅ Imagen de perfil cargada exitosamente")
+                    } else {
+                        Log.w(TAG, "⚠️ No se encontró URL de avatar, usando imagen por defecto")
+                        profileImage.setImageResource(R.drawable.ic_default_profile)
+                    }
+                }
+
+            } catch (e: Exception) {
+                Log.e(TAG, "❌ ERROR al cargar foto de perfil", e)
+                Log.e(TAG, "💥 Tipo de error: ${e.javaClass.simpleName}")
+                Log.e(TAG, "💬 Mensaje: ${e.message}")
+
+                withContext(Dispatchers.Main) {
+                    // Usar imagen por defecto en caso de error
+                    profileImage.setImageResource(R.drawable.ic_default_profile)
+                }
+            }
+        }
+    }
+
+
 
     // -----------------------------------------------------------
     // INIT VIEWS
@@ -209,7 +272,7 @@ class DashboardActivity : AppCompatActivity() {
 
         navConsulta.setOnClickListener {
             Log.d(TAG, "👆 Click en Consulta - Navegando a Consultas_Veterinaria")
-            startActivity(Intent(this, Consultas_Veterinaria::class.java))
+            startActivity(Intent(this, ConsultasVeterinariaActivity::class.java))
         }
 
         navSetting.setOnClickListener {
@@ -217,6 +280,79 @@ class DashboardActivity : AppCompatActivity() {
             startActivity(Intent(this, SettingsFragment::class.java))
         }
     }
+
+    // -----------------------------------------------------------
+// MOSTRAR MODAL DE DETALLE DE MASCOTA
+// -----------------------------------------------------------
+    private fun showPetDetailModal(pet: Pet) {
+        Log.d(TAG, "🐕 Mostrando modal de detalle para: ${pet.name}")
+
+        val dialog = BottomSheetDialog(this)
+        val view = layoutInflater.inflate(R.layout.modal_pet_detail, null)
+
+        // Referencias a las vistas
+        val closeButton: ImageView = view.findViewById(R.id.closeButton)
+        val modalPetImage: ImageView = view.findViewById(R.id.modalPetImage)
+        val modalPetName: TextView = view.findViewById(R.id.modalPetName)
+        val modalPetBreed: TextView = view.findViewById(R.id.modalPetBreed)
+        val modalPetAge: TextView = view.findViewById(R.id.modalPetAge)
+        val modalPetWeight: TextView = view.findViewById(R.id.modalPetWeight)
+        val modalPetDescription: TextView = view.findViewById(R.id.modalPetDescription)
+        val actionButton: CardView = view.findViewById(R.id.actionButton)
+
+        // Configurar datos de la mascota
+        modalPetName.text = pet.name
+        modalPetBreed.text = pet.breed
+
+        // Formatear edad
+        modalPetAge.text = if (pet.age == 1) "1 año" else "${pet.age} años"
+
+        // Peso por defecto (puedes agregar este campo después si lo necesitas)
+        modalPetWeight.text = "-- kg"
+
+        // Descripción por defecto
+        modalPetDescription.text = "Una mascota cariñosa y especial. " +
+                "Miembro de la familia desde hace ${pet.age} ${if (pet.age == 1) "año" else "años"}."
+
+        // Cargar imagen con Glide
+        if (!pet.imageUrl.isNullOrEmpty()) {
+            Glide.with(this)
+                .load(pet.imageUrl)
+                .placeholder(R.drawable.ic_pet_placeholder)
+                .error(R.drawable.ic_pet_placeholder)
+                .centerCrop()
+                .into(modalPetImage)
+        } else {
+            modalPetImage.setImageResource(R.drawable.ic_pet_placeholder)
+        }
+
+        // Botón cerrar
+        closeButton.setOnClickListener {
+            Log.d(TAG, "❌ Cerrando modal de detalle")
+            dialog.dismiss()
+        }
+
+        // Botón de acción (placeholder para función futura)
+        actionButton.setOnClickListener {
+            Log.d(TAG, "👆 Click en botón de acción para ${pet.name}")
+            Toast.makeText(
+                this,
+                "Historial médico disponible próximamente",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            // TODO: Aquí puedes implementar la navegación al historial médico
+            // startActivity(Intent(this, MedicalHistoryActivity::class.java).apply {
+            //     putExtra("PET_ID", pet.id)
+            // })
+        }
+
+        dialog.setContentView(view)
+        dialog.show()
+
+        Log.d(TAG, "✅ Modal de detalle mostrado para ${pet.name}")
+    }
+
 
     // -----------------------------------------------------------
     // CARGAR NOMBRE DEL USUARIO DESDE SUPABASE
@@ -254,7 +390,7 @@ class DashboardActivity : AppCompatActivity() {
             },
             onPetClick = { pet ->
                 Log.d(TAG, "👆 Click en mascota: ${pet.name}")
-                Toast.makeText(this, "Mascota: ${pet.name}", Toast.LENGTH_SHORT).show()
+                showPetDetailModal(pet) // ← CAMBIO PRINCIPAL
             }
         )
 
@@ -285,7 +421,7 @@ class DashboardActivity : AppCompatActivity() {
         )
 
         adoptionRecyclerView.apply {
-            layoutManager = GridLayoutManager(this@DashboardActivity, 2)
+            layoutManager = GridLayoutManager(this@DashboardActivity, 1)
             adapter = adoptionAdapter
         }
 
@@ -390,6 +526,7 @@ class DashboardActivity : AppCompatActivity() {
                     Log.d(TAG, "    Raza: ${pet.breed}")
                     Log.d(TAG, "    Edad: ${pet.age}")
                     Log.d(TAG, "    Adoptada: ${pet.is_adopted}")
+                    Log.d(TAG, "    Descripción: ${pet.description ?: "Sin descripción"}")  // ⬅️ NUEVO
                     Log.d(TAG, "    URL Imagen: ${pet.image_url ?: "Sin imagen"}")
                 }
 
@@ -402,7 +539,15 @@ class DashboardActivity : AppCompatActivity() {
                             name = it.name,
                             breed = it.breed,
                             imageUrl = it.image_url ?: "",
-                            age = it.age
+                            age = it.age,
+                            description = it.description,
+
+                            // ⬇️⬇️⬇️ NUEVOS CAMPOS ⬇️⬇️⬇️
+                            gender = it.gender ?: "No especificado",
+                            weight = it.weight,
+                            location = it.location ?: "Santo Domingo, República Dominicana",
+                            shelterName = it.shelter_name ?: "Refugio Patitas Felices",
+                            shelterPhone = it.shelter_phone
                         )
                     }
 
@@ -715,7 +860,7 @@ class DashboardActivity : AppCompatActivity() {
 
         veterinaryCard.setOnClickListener {
             Log.d(TAG, "👆 Click en veterinaria")
-            startActivity(Intent(this, Consultas_Veterinaria::class.java))
+            startActivity(Intent(this, ConsultasVeterinariaActivity::class.java))
         }
 
         groomingCard.setOnClickListener {
@@ -735,4 +880,13 @@ class DashboardActivity : AppCompatActivity() {
 
         Log.d(TAG, "✅ Click listeners configurados")
     }
+
+    @Serializable
+    data class UserProfile(
+        val id: String,
+        val username: String? = null,
+        val full_name: String? = null,
+        val avatar_url: String? = null,
+        val updated_at: String? = null
+    )
 }

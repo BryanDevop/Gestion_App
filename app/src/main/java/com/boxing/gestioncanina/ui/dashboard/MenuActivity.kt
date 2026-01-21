@@ -10,7 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.boxing.gestioncanina.R
-import com.boxing.gestioncanina.ui.medical.Consultas_Veterinaria
+import com.boxing.gestioncanina.ui.citas.RegistrarCitaActivity
+import com.boxing.gestioncanina.ui.medical.ConsultasVeterinariaActivity
 import com.boxing.gestioncanina.ui.settings.SettingsFragment
 
 class MenuActivity : AppCompatActivity() {
@@ -37,7 +38,7 @@ class MenuActivity : AppCompatActivity() {
 
         findViewById<LinearLayout>(R.id.nav_consulta).setOnClickListener {
             setActiveMenu(R.id.nav_consulta)
-            startActivity(Intent(this, Consultas_Veterinaria::class.java))
+            startActivity(Intent(this, RegistrarCitaActivity::class.java))
         }
 
         findViewById<LinearLayout>(R.id.nav_recetas).setOnClickListener {

@@ -27,5 +27,21 @@ data class AdoptionPetUI(
     val description: String? = null,
 
     @SerialName("created_at")
-    val created_at: String? = null
+    val created_at: String? = null,
+
+    // ⬇️⬇️⬇️ NUEVOS CAMPOS ⬇️⬇️⬇️
+    @SerialName("gender")
+    val gender: String? = "No especificado",
+
+    @SerialName("weight")
+    val weight: Double? = null,
+
+    @SerialName("location")
+    val location: String? = "Santo Domingo, República Dominicana",
+
+    @SerialName("shelter_name")
+    val shelter_name: String? = "Refugio Patitas Felices",
+
+    @SerialName("shelter_phone")
+    val shelter_phone: String? = null
 )

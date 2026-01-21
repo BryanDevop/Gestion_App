@@ -9,8 +9,6 @@
     app:cardElevation="6dp"
     app:cardUseCompatPadding="true">
 
-    // Item_adoption_pet_card.xml
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -88,7 +86,7 @@
                 android:id="@+id/btnAdopt"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:text="Adoptar"
+                android:text="Detalle"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/white"

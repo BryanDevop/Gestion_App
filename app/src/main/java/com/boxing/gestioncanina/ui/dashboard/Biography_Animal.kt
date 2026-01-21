@@ -1,198 +1,143 @@
 package com.boxing.gestioncanina.ui.dashboard
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.widget.Toast
-import com.boxing.gestioncanina.R
+import android.util.Log
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.boxing.gestioncanina.databinding.ActivityBiographyAnimalBinding
-import com.boxing.gestioncanina.databinding.DialogAdoptionFormBinding
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.boxing.gestioncanina.R
+import com.bumptech.glide.Glide
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class Biography_Animal : AppCompatActivity() {
 
-    private lateinit var binding: ActivityBiographyAnimalBinding
+    companion object {
+        private const val TAG = "Biography_Animal"
+    }
+
+    // Views
+    private lateinit var imgPet: ImageView
+    private lateinit var tvPetName: TextView
+    private lateinit var tvPetBreed: TextView
+    private lateinit var tvAge: TextView
+    private lateinit var tvGender: TextView
+    private lateinit var tvWeight: TextView
+    private lateinit var tvLocation: TextView
+    private lateinit var tvDescription: TextView
+    private lateinit var fabBack: FloatingActionButton
+    private lateinit var fabFavorite: FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_biography_animal)
 
+        Log.d(TAG, "════════════════════════════════════════")
+        Log.d(TAG, "🐕 Iniciando Biography_Animal")
+        Log.d(TAG, "════════════════════════════════════════")
 
-        binding = ActivityBiographyAnimalBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-
-        setupUI()
+        initViews()
+        loadPetData()
+        setupClickListeners()
     }
 
-    private fun setupUI() {
-        // Configurar datos de ejemplo (reemplazar con datos reales)
-        setupPetData()
+    private fun initViews() {
+        Log.d(TAG, "🔧 Inicializando views...")
 
-        // Configurar listeners
-        binding.btnAdopt.setOnClickListener {
-            showAdoptionDialog()
-        }
+        imgPet = findViewById(R.id.imgPet)
+        tvPetName = findViewById(R.id.tvPetName)
+        tvPetBreed = findViewById(R.id.tvPetBreed)
+        tvAge = findViewById(R.id.tvAge)
+        tvGender = findViewById(R.id.tvGender)
+        tvWeight = findViewById(R.id.tvWeight)
+        tvLocation = findViewById(R.id.tvLocation)
+        tvDescription = findViewById(R.id.tvDescription)
+        fabBack = findViewById(R.id.fabBack)
+        fabFavorite = findViewById(R.id.fabFavorite)
 
-        binding.fabBack.setOnClickListener {
-            finish()
-        }
-
-        binding.fabFavorite.setOnClickListener {
-            // Implementar lógica de favoritos
-            Toast.makeText(this, "Agregado a favoritos", Toast.LENGTH_SHORT).show()
-        }
-
-        binding.btnCallShelter.setOnClickListener {
-            // Implementar lógica de llamada
-            Toast.makeText(this, "Llamando al refugio...", Toast.LENGTH_SHORT).show()
-        }
+        Log.d(TAG, "✅ Views inicializadas correctamente")
     }
 
-    private fun setupPetData() {
-        // Aquí deberías cargar los datos reales de la mascota
-        // Este es un ejemplo con datos de prueba
-        binding.apply {
-            tvPetName.text = "Luna"
-            tvPetBreed.text = "Golden Retriever"
-            tvAge.text = "2 años"
-            tvGender.text = "Hembra"
-            tvWeight.text = "15 kg"
-            tvLocation.text = "Santo Domingo, República Dominicana"
-            tvDescription.text = "Luna es una perrita encantadora y llena de energía. Le encanta jugar y es muy cariñosa con las personas. Está completamente vacunada, desparasitada y lista para encontrar su hogar definitivo."
-            tvShelterName.text = "Refugio Patitas Felices"
-        }
-    }
+    private fun loadPetData() {
+        Log.d(TAG, "📦 Cargando datos de la mascota desde Intent...")
 
-    private fun showAdoptionDialog() {
-        val dialogBinding = DialogAdoptionFormBinding.inflate(LayoutInflater.from(this))
+        // Recibir datos del Intent
+        val petId = intent.getStringExtra("PET_ID") ?: ""
+        val petName = intent.getStringExtra("PET_NAME") ?: "Sin nombre"
+        val petBreed = intent.getStringExtra("PET_BREED") ?: "Raza desconocida"
+        val petAge = intent.getIntExtra("PET_AGE", 0)
+        val petImageUrl = intent.getStringExtra("PET_IMAGE_URL") ?: ""
+        val petDescription = intent.getStringExtra("PET_DESCRIPTION")
+            ?: "Mascota cariñosa en busca de un hogar lleno de amor."
 
-        val dialog = MaterialAlertDialogBuilder(this, R.style.RoundedMaterialDialog)
-            .setView(dialogBinding.root)
-            .setCancelable(true)
-            .create()
+        // ⬇️⬇️⬇️ RECIBIR NUEVOS DATOS ⬇️⬇️⬇️
+        val petGender = intent.getStringExtra("PET_GENDER") ?: "No especificado"
+        val petWeight = intent.getDoubleExtra("PET_WEIGHT", 0.0)
+        val petLocation = intent.getStringExtra("PET_LOCATION")
+            ?: "Santo Domingo, República Dominicana"
+        val shelterName = intent.getStringExtra("SHELTER_NAME")
+            ?: "Refugio Patitas Felices"
+        val shelterPhone = intent.getStringExtra("SHELTER_PHONE") ?: ""
 
-        // Configurar listeners del formulario
-        dialogBinding.apply {
-            btnCancel.setOnClickListener {
-                dialog.dismiss()
-            }
+        Log.d(TAG, "📝 Datos recibidos:")
+        Log.d(TAG, "   ID: $petId")
+        Log.d(TAG, "   Nombre: $petName")
+        Log.d(TAG, "   Raza: $petBreed")
+        Log.d(TAG, "   Edad: $petAge")
+        Log.d(TAG, "   Género: $petGender")
+        Log.d(TAG, "   Peso: $petWeight kg")
+        Log.d(TAG, "   Ubicación: $petLocation")
+        Log.d(TAG, "   Refugio: $shelterName")
+        Log.d(TAG, "   Teléfono: $shelterPhone")
 
-            btnSubmit.setOnClickListener {
-                if (validateForm(dialogBinding)) {
-                    submitAdoptionForm(dialogBinding)
-                    dialog.dismiss()
-                }
-            }
-        }
+        // Mostrar datos básicos
+        tvPetName.text = petName
+        tvPetBreed.text = petBreed
+        tvAge.text = if (petAge == 1) "1 año" else "$petAge años"
+        tvDescription.text = petDescription
 
-        dialog.show()
-    }
+        // ⬇️⬇️⬇️ MOSTRAR NUEVOS DATOS REALES ⬇️⬇️⬇️
+        tvGender.text = petGender
+        tvWeight.text = if (petWeight > 0) "${petWeight} kg" else "-- kg"
+        tvLocation.text = petLocation
 
-    private fun validateForm(dialogBinding: DialogAdoptionFormBinding): Boolean {
-        var isValid = true
+        // Mostrar nombre del refugio
+        val shelterNameView: TextView = findViewById(R.id.tvShelterName)
+        shelterNameView.text = shelterName
 
-        dialogBinding.apply {
-            // Validar nombre
-            if (etFullName.text.isNullOrBlank()) {
-                tilFullName.error = "El nombre es requerido"
-                isValid = false
-            } else {
-                tilFullName.error = null
-            }
-
-            // Validar email
-            val email = etEmail.text.toString()
-            if (email.isBlank()) {
-                tilEmail.error = "El email es requerido"
-                isValid = false
-            } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                tilEmail.error = "Email inválido"
-                isValid = false
-            } else {
-                tilEmail.error = null
-            }
-
-            // Validar teléfono
-            if (etPhone.text.isNullOrBlank()) {
-                tilPhone.error = "El teléfono es requerido"
-                isValid = false
-            } else {
-                tilPhone.error = null
-            }
-
-            // Validar dirección
-            if (etAddress.text.isNullOrBlank()) {
-                tilAddress.error = "La dirección es requerida"
-                isValid = false
-            } else {
-                tilAddress.error = null
-            }
-
-            // Validar radio buttons
-            if (rgPreviousPets.checkedRadioButtonId == -1) {
-                Toast.makeText(this@Biography_Animal, "Por favor responde si has tenido mascotas antes", Toast.LENGTH_SHORT).show()
-                isValid = false
-            }
-
-            if (rgAdequateSpace.checkedRadioButtonId == -1) {
-                Toast.makeText(this@Biography_Animal, "Por favor responde si tienes espacio adecuado", Toast.LENGTH_SHORT).show()
-                isValid = false
-            }
-
-            // Validar términos y condiciones
-            if (!cbTerms.isChecked) {
-                Toast.makeText(this@Biography_Animal, "Debes aceptar los términos y condiciones", Toast.LENGTH_LONG).show()
-                isValid = false
-            }
+        // Cargar imagen con Glide
+        if (petImageUrl.isNotEmpty()) {
+            Log.d(TAG, "📷 Cargando imagen...")
+            Glide.with(this)
+                .load(petImageUrl)
+                .placeholder(R.drawable.ic_pet_placeholder)
+                .error(R.drawable.ic_pet_placeholder)
+                .centerCrop()
+                .into(imgPet)
+            Log.d(TAG, "✅ Imagen cargada")
+        } else {
+            Log.w(TAG, "⚠️ No hay URL de imagen, usando placeholder")
+            imgPet.setImageResource(R.drawable.ic_pet_placeholder)
         }
 
-        return isValid
+        Log.d(TAG, "✅ Datos de mascota cargados exitosamente")
     }
 
-    private fun submitAdoptionForm(dialogBinding: DialogAdoptionFormBinding) {
-        dialogBinding.apply {
-            val fullName = etFullName.text.toString()
-            val email = etEmail.text.toString()
-            val phone = etPhone.text.toString()
-            val address = etAddress.text.toString()
-            val hasPreviousPets = rbYes.isChecked
-            val hasAdequateSpace = rbSpaceYes.isChecked
-            val comments = etComments.text.toString()
+    private fun setupClickListeners() {
+        Log.d(TAG, "🔧 Configurando click listeners...")
 
-            // Aquí deberías enviar los datos a tu backend/base de datos
-            // Por ahora solo mostramos un mensaje de éxito
-
-            showSuccessDialog()
-
-            // Log para debug
-            println("Formulario de adopción:")
-            println("Nombre: $fullName")
-            println("Email: $email")
-            println("Teléfono: $phone")
-            println("Dirección: $address")
-            println("Ha tenido mascotas: $hasPreviousPets")
-            println("Tiene espacio: $hasAdequateSpace")
-            println("Comentarios: $comments")
+        // Botón de regresar
+        fabBack.setOnClickListener {
+            Log.d(TAG, "👆 Click en botón regresar")
+            finish() // Cierra esta Activity y regresa a la anterior
         }
-    }
 
-    private fun showSuccessDialog() {
-        MaterialAlertDialogBuilder(this)
-            .setTitle("¡Solicitud Enviada!")
-            .setMessage("Tu solicitud de adopción ha sido enviada exitosamente. El refugio se pondrá en contacto contigo pronto.")
-            .setPositiveButton("Aceptar") { dialog, _ ->
-                dialog.dismiss()
-                // Opcional: regresar a la pantalla anterior
-                // finish()
-            }
-            .setIcon(R.drawable.ic_check_circle)
-            .show()
+        // Botón de favorito (placeholder por ahora)
+        fabFavorite.setOnClickListener {
+            Log.d(TAG, "👆 Click en botón favorito")
+            // TODO: Implementar funcionalidad de favoritos
+        }
+
+        Log.d(TAG, "✅ Click listeners configurados")
     }
 }

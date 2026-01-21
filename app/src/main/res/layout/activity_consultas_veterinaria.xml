@@ -2,11 +2,12 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <!-- Toolbar profesional -->
+    <!-- Toolbar -->
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbarConsultas"
         android:layout_width="match_parent"
@@ -30,84 +31,101 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal">
 
-            <!-- Card Opción Diagnóstico -->
+            <!-- Diagnóstico -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_diagnostico"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 app:cardElevation="6dp"
                 app:cardCornerRadius="18dp"
-                app:strokeColor="@color/blueLight">
+                app:strokeColor="@color/blueLight"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="20dp"
+                    android:padding="24dp"
                     android:text="Diagnóstico"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textColor="@color/bluePrimary"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:gravity="center"/>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Card Opción Tratamiento -->
+            <!-- Tratamiento -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_tratamiento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 app:cardElevation="6dp"
                 app:cardCornerRadius="18dp"
-                app:strokeColor="@color/greenPrimary">
+                app:strokeColor="@color/greenPrimary"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="20dp"
+                    android:padding="24dp"
                     android:text="Tratamiento"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textColor="@color/greenPrimary"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:gravity="center"/>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Card Opción Medicamentos -->
+            <!-- Medicamentos -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_medicamentos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 app:cardElevation="6dp"
                 app:cardCornerRadius="18dp"
-                app:strokeColor="@color/bluePrimary">
+                app:strokeColor="@color/blueLight"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="20dp"
+                    android:padding="24dp"
                     android:text="Medicamentos"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textColor="@color/bluePrimary"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:gravity="center"/>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Card Opción Observaciones -->
+            <!-- Observaciones -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_observaciones"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
                 app:cardElevation="6dp"
                 app:cardCornerRadius="18dp"
-                app:strokeColor="@color/greenPrimary">
+                app:strokeColor="@color/greenPrimary"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="20dp"
+                    android:padding="24dp"
                     android:text="Observaciones"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textColor="@color/greenPrimary"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:gravity="center"/>
             </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
-
     </ScrollView>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

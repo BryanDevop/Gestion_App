@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <!-- Color de fondo claro -->
+    <solid android:color="#E3F2FD" /> <!-- azul claro tipo info -->
+
+    <!-- Tamaño opcional (útil si lo usas directo como fondo) -->
+    <size
+        android:width="40dp"
+        android:height="40dp" />
+</shape>
